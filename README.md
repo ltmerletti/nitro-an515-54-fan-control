@@ -1,29 +1,27 @@
 # Max fans on Linux Mint (Acer Nitro)
 
-Adds **Fans: Max / Auto** to the Mint menu. One click switches both fans to
-full speed, and another click puts them back on Auto. A notification shows the
-fan speed after each change. Every restart begins in Auto.
+Adds a fan button to the Linux Mint panel, next to the battery icon. Click it
+and choose **Auto** or **Max**. The button shows which mode is on, and the menu
+shows the fan speeds. Every restart begins in Auto.
 
-## Setup (once, about 5 minutes)
+## Setup
 
-1. Install Linux Mint and, if offered, the NVIDIA driver from Driver Manager.
-2. Put `nitro_fans.py` in Downloads, open Terminal and paste:
+After installing Linux Mint (and the NVIDIA driver, if Driver Manager offers
+it), open Terminal, paste this line and enter the password:
 
-   ```sh
-   sudo python3 ~/Downloads/nitro_fans.py install
-   ```
+```sh
+wget -qO /tmp/nitro_fans.py https://raw.githubusercontent.com/ltmerletti/nitro-an515-54-fan-control/main/nitro_fans.py && sudo python3 /tmp/nitro_fans.py install
+```
 
-   Enter the password when asked. On Mint 22.x this also installs a newer
-   kernel, which takes a few minutes.
-3. Restart.
-4. Open the menu, search for "Fans", and right-click the entry to add it to the
-   panel if wanted.
+Then restart. On Mint 22.x the command also installs a newer kernel, which
+takes a few minutes.
 
-If the notification says Max fans aren't available, the laptop's firmware
-refused the request. The fans stay on Auto, and Mint's power modes still work.
+If the menu says Max fans aren't available after the restart, the laptop's
+firmware refused the request. The fans stay on Auto, and Mint's power modes
+still work.
 
-To remove everything: `sudo python3 /usr/local/bin/nitro-fans uninstall`, then
-restart. To check the state: `nitro-fans status`.
+To remove everything: `sudo nitro-fans uninstall`, then restart.
+To check the state: `nitro-fans status`.
 
 ## How it works
 
@@ -32,9 +30,12 @@ The kernel's `acer_wmi` driver already supports Acer's firmware fan modes
 enables them for models on its list, and the AN515-56 isn't on it. The
 installer adds one driver option (`force_caps`). That option keeps the
 features the driver already detects (Wi-Fi and Bluetooth switches, brightness)
-and adds performance modes, fan readouts and fan modes. The menu entry can only
-choose firmware Max or firmware Auto. It never sets a fixed speed and never
-writes to the embedded controller.
+and adds performance modes, fan readouts and fan modes.
 
-Not yet confirmed on an AN515-56. The same approach is reported working on an
-AN517-55, which isn't on the kernel's list either.
+The panel button is a small Cinnamon applet. It reads the fan state from the
+driver and switches it through a helper that polkit allows for the logged-in
+user without a password. It can only choose firmware Max or firmware Auto. It
+never sets a fixed speed and never writes to the embedded controller.
+
+Not yet confirmed on an AN515-56. The same driver option is reported working
+on an AN517-55, which isn't on the kernel's list either.
