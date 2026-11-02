@@ -148,15 +148,34 @@ def current_mode() -> str | None:
     return "other"
 
 
-def set_mode(mode: str) -> None:
+REFUSED = 2  # exit status when the firmware rejects a mode change
+
+
+def set_mode(mode: str) -> int:
+    """Switch both fans; returns 0, or REFUSED if the firmware did not take it."""
     if mode not in MODES:
         raise SystemExit(f"Unknown mode {mode!r}; use max or auto.")
     hwmon = acer_hwmon()
     if not hwmon or not has_pwm():
         raise SystemExit("Max fans are not available. Restart after installing, or the "
                          "firmware does not support it.")
-    for i in (1, 2):
-        (hwmon / f"pwm{i}_enable").write_text(MODES[mode])
+    try:
+        for i in (1, 2):
+            (hwmon / f"pwm{i}_enable").write_text(MODES[mode])
+    except OSError as error:
+        print(f"The laptop firmware refused {mode}: {error}", file=sys.stderr)
+        if mode != "auto":
+            # Never leave one fan switched and the other not.
+            for i in (1, 2):
+                try:
+                    (hwmon / f"pwm{i}_enable").write_text(MODES["auto"])
+                except OSError:
+                    pass
+        return REFUSED
+    if current_mode() != mode:
+        print(f"The laptop firmware did not switch to {mode}.", file=sys.stderr)
+        return REFUSED
+    return 0
 
 
 def rpm() -> list[int]:
@@ -206,12 +225,15 @@ APPLET_METADATA = f"""{{
 # logged-in user without a password.
 APPLET_JS = """const Applet = imports.ui.applet;
 const PopupMenu = imports.ui.popupMenu;
+const Main = imports.ui.main;
 const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const ByteArray = imports.byteArray;
 
 const HELPER = "%(helper)s";
+const HWMON_ROOT = "/sys/class/hwmon";
+const REFUSED = %(refused)d;
 
 function readFile(path) {
     try {
@@ -224,7 +246,7 @@ function readFile(path) {
 
 function acerHwmon() {
     for (let i = 0; i < 64; i++) {
-        let dir = "/sys/class/hwmon/hwmon" + i;
+        let dir = HWMON_ROOT + "/hwmon" + i;
         if (readFile(dir + "/name") === "acer")
             return dir;
     }
@@ -235,6 +257,7 @@ class NitroFansApplet extends Applet.TextIconApplet {
     constructor(metadata, orientation, panelHeight, instanceId) {
         super(orientation, panelHeight, instanceId);
         this.set_applet_icon_symbolic_name("weather-windy-symbolic");
+        this._problem = null;
 
         this.menuManager = new PopupMenu.PopupMenuManager(this);
         this.menu = new Applet.AppletPopupMenu(this, orientation);
@@ -249,6 +272,9 @@ class NitroFansApplet extends Applet.TextIconApplet {
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         this.infoItem = new PopupMenu.PopupMenuItem("", { reactive: false });
         this.menu.addMenuItem(this.infoItem);
+        this.problemItem = new PopupMenu.PopupMenuItem("", { reactive: false });
+        this.menu.addMenuItem(this.problemItem);
+        this.problemItem.actor.hide();
 
         this._refresh();
         this._timer = Mainloop.timeout_add_seconds(3, () => {
@@ -269,23 +295,54 @@ class NitroFansApplet extends Applet.TextIconApplet {
     }
 
     _setMode(mode) {
-        Util.spawn(["pkexec", HELPER, "set", mode]);
-        Mainloop.timeout_add(800, () => {
+        Util.spawnCommandLineAsyncIO("", (stdout, stderr, status) => {
+            if (status === 0) {
+                this._problem = null;
+            } else {
+                if (status === REFUSED)
+                    this._problem = mode === "max" ? "Max isn't supported on this laptop"
+                                                   : "The laptop refused to switch to Auto";
+                else if (status === 126 || status === 127)
+                    this._problem = "Permission to change the fans was refused";
+                else
+                    this._problem = "Couldn't change the fans";
+                Main.notify("Nitro fans", this._problem);
+            }
             this._refresh();
-            return false;
-        });
+        }, { argv: ["pkexec", HELPER, "set", mode] });
+    }
+
+    _showProblem() {
+        if (this._problem) {
+            this.problemItem.label.set_text(this._problem);
+            this.problemItem.actor.show();
+        } else {
+            this.problemItem.actor.hide();
+        }
+    }
+
+    _unavailable(text) {
+        this.set_applet_label("");
+        this.autoItem.setSensitive(false);
+        this.maxItem.setSensitive(false);
+        this.autoItem.setShowDot(false);
+        this.maxItem.setShowDot(false);
+        this.infoItem.label.set_text(text);
+        this.set_applet_tooltip("Nitro fans: " + text);
+        this._showProblem();
     }
 
     _refresh() {
         let hwmon = acerHwmon();
-        let one = hwmon ? readFile(hwmon + "/pwm1_enable") : null;
-        let two = hwmon ? readFile(hwmon + "/pwm2_enable") : null;
+        let control = hwmon ? hwmon + "/pwm1_enable" : null;
+        if (!control || !GLib.file_test(control, GLib.FileTest.EXISTS)) {
+            this._unavailable("Max fans need a restart to start working");
+            return;
+        }
+        let one = readFile(hwmon + "/pwm1_enable");
+        let two = readFile(hwmon + "/pwm2_enable");
         if (one === null || two === null) {
-            this.set_applet_label("");
-            this.autoItem.setSensitive(false);
-            this.maxItem.setSensitive(false);
-            this.infoItem.label.set_text("Max fans need a restart to start working");
-            this.set_applet_tooltip("Nitro fans: not available yet");
+            this._unavailable("Fan modes aren't supported on this laptop");
             return;
         }
         let max = one === "0" && two === "0";
@@ -299,13 +356,14 @@ class NitroFansApplet extends Applet.TextIconApplet {
                            .filter(v => v !== null).map(v => v + " RPM").join(" / ");
         this.infoItem.label.set_text("Fans: " + (speeds || "unknown"));
         this.set_applet_tooltip("Nitro fans: " + (max ? "Max" : "Auto") + (speeds ? " (" + speeds + ")" : ""));
+        this._showProblem();
     }
 }
 
 function main(metadata, orientation, panelHeight, instanceId) {
     return new NitroFansApplet(metadata, orientation, panelHeight, instanceId);
 }
-""" % {"helper": INSTALLED}
+""" % {"helper": INSTALLED, "refused": REFUSED}
 
 
 # ---------------------------------------------------------------- panel
@@ -432,8 +490,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "set":
         if not has_pwm():
             return 1
-        set_mode(args.mode)
-        return 0
+        return set_mode(args.mode)
     return status()
 
 

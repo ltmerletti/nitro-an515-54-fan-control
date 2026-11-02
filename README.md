@@ -4,6 +4,17 @@ Adds a fan button to the Linux Mint panel, next to the battery icon. Click it
 and choose **Auto** or **Max**. The button shows which mode is on, and the menu
 shows the fan speeds. Every restart begins in Auto.
 
+| Auto | Max |
+|---|---|
+| ![Fan menu in Auto](screenshots/menu-auto.png) | ![Fan menu in Max](screenshots/menu-max.png) |
+
+Screenshots from Linux Mint 22.3 Cinnamon. The menu also explains when a
+restart is still needed, or when the laptop's firmware refuses Max:
+
+| Before the restart | Max refused |
+|---|---|
+| ![Before the restart](screenshots/before-restart.png) | ![Max refused](screenshots/max-refused.png) |
+
 ## Setup
 
 After installing Linux Mint (and the NVIDIA driver, if Driver Manager offers
@@ -16,9 +27,8 @@ wget -qO /tmp/nitro_fans.py https://raw.githubusercontent.com/ltmerletti/nitro-a
 Then restart. On Mint 22.x the command also installs a newer kernel, which
 takes a few minutes.
 
-If the menu says Max fans aren't available after the restart, the laptop's
-firmware refused the request. The fans stay on Auto, and Mint's power modes
-still work.
+If the menu says "Max isn't supported on this laptop", the firmware refused
+the request. Both fans stay on Auto, and Mint's power modes still work.
 
 To remove everything: `sudo nitro-fans uninstall`, then restart.
 To check the state: `nitro-fans status`.

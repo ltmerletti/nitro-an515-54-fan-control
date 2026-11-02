@@ -4,7 +4,7 @@ import importlib.util
 import io
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest import mock
 
@@ -83,16 +83,38 @@ class TestNitroFans(unittest.TestCase):
 
     def test_only_max_and_auto_can_be_set(self):
         laptop = FakeLaptop(self.root)
-        nitro_fans.set_mode("max")
+        self.assertEqual(nitro_fans.set_mode("max"), 0)
         self.assertEqual(laptop.pwm(), ["0", "0"])
         self.assertEqual(nitro_fans.current_mode(), "max")
-        nitro_fans.set_mode("auto")
+        self.assertEqual(nitro_fans.set_mode("auto"), 0)
         self.assertEqual(laptop.pwm(), ["2", "2"])
         with self.assertRaises(SystemExit):
             nitro_fans.set_mode("custom")
         with self.assertRaises(SystemExit):
             nitro_fans.main(["set", "1"])
         self.assertEqual(laptop.pwm(), ["2", "2"])
+
+    def test_refused_max_is_reported_and_both_fans_return_to_auto(self):
+        laptop = FakeLaptop(self.root)
+        real_write = Path.write_text
+
+        def refuse_second_fan(self_path, data, *args, **kwargs):
+            if self_path.name == "pwm2_enable" and data == "0":
+                raise OSError(5, "Input/output error")
+            return real_write(self_path, data, *args, **kwargs)
+
+        with mock.patch.object(Path, "write_text", refuse_second_fan), \
+             redirect_stderr(io.StringIO()) as err:
+            self.assertEqual(nitro_fans.main(["set", "max"]), nitro_fans.REFUSED)
+        self.assertEqual(laptop.pwm(), ["2", "2"])
+        self.assertIn("refused max", err.getvalue())
+
+    def test_ignored_switch_is_reported(self):
+        FakeLaptop(self.root)
+        with mock.patch.object(nitro_fans, "current_mode", return_value="auto"), \
+             redirect_stderr(io.StringIO()) as err:
+            self.assertEqual(nitro_fans.set_mode("max"), nitro_fans.REFUSED)
+        self.assertIn("did not switch", err.getvalue())
 
     def test_set_without_fan_modes_changes_nothing(self):
         FakeLaptop(self.root, pwm=False)
@@ -138,8 +160,10 @@ class TestNitroFans(unittest.TestCase):
     def test_applet_only_offers_auto_and_max_through_the_helper(self):
         js = nitro_fans.APPLET_JS
         self.assertIn('const HELPER = "/usr/local/bin/nitro-fans";', js)
-        self.assertIn('["pkexec", HELPER, "set", mode]', js)
+        self.assertIn('argv: ["pkexec", HELPER, "set", mode]', js)
         self.assertEqual(js.count('_setMode("'), 2)
+        self.assertIn("const REFUSED = 2;", js)
+        self.assertIn("Max isn't supported on this laptop", js)
         self.assertNotIn("writeFile", js)
         self.assertIn(nitro_fans.APPLET_UUID, nitro_fans.APPLET_METADATA)
 
