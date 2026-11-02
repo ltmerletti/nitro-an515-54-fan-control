@@ -1,0 +1,68 @@
+{
+  "repository": "https://github.com/nbfc-linux/nbfc-linux",
+  "version": "0.5.4",
+  "commit": "9da010d6a2e8351bdf6900d6c3643f1e742af936",
+  "audited_at_utc": "2026-11-01T19:49:58.207346+00:00",
+  "method": "git ls-tree and git show of committed source; profiles not executed",
+  "profiles": [
+    {
+      "model": "AN515-42",
+      "path": "share/nbfc/configs/Acer Nitro AN515-42.json",
+      "sha256": "21b608e9a7bd2a1027b5e3d2061831bfdca55fca46d7b8a316e0b658fa141420",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-42.json"
+    },
+    {
+      "model": "AN515-43",
+      "path": "share/nbfc/configs/Acer Nitro AN515-43.json",
+      "sha256": "90b064cccc820fd47dde57a3c2f38a10ce3f1ddf442ff133fec37793f6c48817",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-43.json"
+    },
+    {
+      "model": "AN515-44",
+      "path": "share/nbfc/configs/Acer Nitro AN515-44.json",
+      "sha256": "85ecb193782206ec21402c0dab664da1aa38844a9c46d79615b8c4bfbbfb39c6",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-44.json"
+    },
+    {
+      "model": "AN515-45",
+      "path": "share/nbfc/configs/Acer Nitro AN515-45.json",
+      "sha256": "5eff0dd6f815f8dd5361f06060bf2223ad88d39ca46be7d812b5f4b9caebe78d",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-45.json"
+    },
+    {
+      "model": "AN515-47",
+      "path": "share/nbfc/configs/Acer Nitro AN515-47.json",
+      "sha256": "6e7a349c71fd946b25fcd97d1f186962b340a27e88b9b86d617d9ab5e81edac7",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-47.json"
+    },
+    {
+      "model": "AN515-51",
+      "path": "share/nbfc/configs/Acer Nitro AN515-51.json",
+      "sha256": "d17df1df577db9aaef4e34e64c4ef2ff63b07a09e76dd16b79115d0df401db3f",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-51.json"
+    },
+    {
+      "model": "AN515-54",
+      "path": "share/nbfc/configs/Acer Nitro AN515-54.json",
+      "sha256": "b04e2edc839169f7342dbbe8114f8ca66dee03dbd02d5685380b448d3161a568",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-54.json"
+    },
+    {
+      "model": "AN515-57",
+      "path": "share/nbfc/configs/Acer Nitro AN515-57.json",
+      "sha256": "9616731df305b40f11b1a5142d909b614684162aba88e99a8a489b14eb1cc260",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-57.json"
+    },
+    {
+      "model": "AN515-58",
+      "path": "share/nbfc/configs/Acer Nitro AN515-58.json",
+      "sha256": "7d2f3e1e734f5bed912ef0627c49746e38d2fa805c94ad6635038302622848ec",
+      "url": "https://github.com/nbfc-linux/nbfc-linux/blob/9da010d6a2e8351bdf6900d6c3643f1e742af936/share/nbfc/configs/Acer%20Nitro%20AN515-58.json"
+    }
+  ],
+  "requested_models_without_exact_profile_in_this_commit": [
+    "AN515-55",
+    "AN515-56"
+  ],
+  "hardware_changes": false
+}

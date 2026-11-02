@@ -1,0 +1,160 @@
+{
+  "utc": "2026-11-01T17:26:33Z",
+  "python": "3.14.4",
+  "status": {
+    "ok": true,
+    "mode": "auto",
+    "requested_mode": "auto",
+    "emergency": true,
+    "backend": "hwmon",
+    "read_only": true,
+    "can_control": false,
+    "temps": {
+      "cpu": 93.0,
+      "gpu": 45.0,
+      "acer_temp1": 92.0,
+      "acer_temp2": 44.0,
+      "acer_temp3": 50.0
+    },
+    "fans": {
+      "fan1": {
+        "percent": null,
+        "rpm": 4000
+      },
+      "fan2": {
+        "percent": null,
+        "rpm": 3409
+      }
+    },
+    "last_error": null,
+    "uptime": 0.03,
+    "curves": {
+      "cpu": [
+        [
+          45.0,
+          25
+        ],
+        [
+          60.0,
+          40
+        ],
+        [
+          70.0,
+          60
+        ],
+        [
+          80.0,
+          85
+        ],
+        [
+          88.0,
+          100
+        ]
+      ],
+      "gpu": [
+        [
+          45.0,
+          25
+        ],
+        [
+          60.0,
+          40
+        ],
+        [
+          70.0,
+          60
+        ],
+        [
+          78.0,
+          85
+        ],
+        [
+          85.0,
+          100
+        ]
+      ]
+    }
+  },
+  "denied_manual_commands": [
+    {
+      "mode": "max",
+      "ok": false,
+      "error": "Cannot set manual mode on read-only backend"
+    },
+    {
+      "mode": "fixed",
+      "ok": false,
+      "error": "Cannot set manual mode on read-only backend"
+    },
+    {
+      "mode": "curve",
+      "ok": false,
+      "error": "Cannot set manual mode on read-only backend"
+    }
+  ],
+  "subscription": [
+    {
+      "uptime": 0.03,
+      "temps": {
+        "cpu": 93.0,
+        "gpu": 45.0,
+        "acer_temp1": 92.0,
+        "acer_temp2": 44.0,
+        "acer_temp3": 50.0
+      },
+      "fans": {
+        "fan1": {
+          "percent": null,
+          "rpm": 4000
+        },
+        "fan2": {
+          "percent": null,
+          "rpm": 3409
+        }
+      }
+    },
+    {
+      "uptime": 2.02,
+      "temps": {
+        "cpu": 92.0,
+        "gpu": 45.0,
+        "acer_temp1": 82.0,
+        "acer_temp2": 45.0,
+        "acer_temp3": 50.0
+      },
+      "fans": {
+        "fan1": {
+          "percent": null,
+          "rpm": 4000
+        },
+        "fan2": {
+          "percent": null,
+          "rpm": 3703
+        }
+      }
+    },
+    {
+      "uptime": 4.03,
+      "temps": {
+        "cpu": 79.0,
+        "gpu": 45.0,
+        "acer_temp1": 92.0,
+        "acer_temp2": 45.0,
+        "acer_temp3": 50.0
+      },
+      "fans": {
+        "fan1": {
+          "percent": null,
+          "rpm": 4000
+        },
+        "fan2": {
+          "percent": null,
+          "rpm": 3846
+        }
+      }
+    }
+  ],
+  "gpu_runtime_status": "active",
+  "sigterm_exit_code": 0,
+  "socket_removed": true
+}

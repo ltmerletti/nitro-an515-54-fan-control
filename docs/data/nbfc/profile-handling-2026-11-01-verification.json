@@ -1,0 +1,41 @@
+{
+  "checked_at_utc": "2026-11-01T20:07:37.577611+00:00",
+  "catalog_sha256": "0f970a054834d5a461664c53353935c333f5cf11b77e313fe55eb6c807ba251f",
+  "catalog_models": 11,
+  "upstream_profiles": 9,
+  "local_tests": {
+    "run": 401,
+    "passed": 396,
+    "linux_integration_skipped": 5
+  },
+  "server_targeted_tests": {
+    "run": 63,
+    "passed": 63
+  },
+  "server_fake_ec_integration": {
+    "run": 5,
+    "passed": 5,
+    "runtime": "/home/luke/nbfc-evaluation/profile-tests-runtime",
+    "binary_sha256": "8d82c9ecedfc447b3c6f5f461092fd3596adb450407d82c6c87c729abf2bfa3c"
+  },
+  "live_detection": {
+    "sys_vendor": "Acer",
+    "product_name": "Nitro AN515-54",
+    "bios_version": "V1.33",
+    "guarded_max_trial": true,
+    "production_control": false
+  },
+  "real_ec_opened_during_verification": false,
+  "real_ec_writes": 0,
+  "ec_write_support_after": "N",
+  "nbfc_processes_after": 0,
+  "reviewed_hardware_build_artifacts_unchanged": true,
+  "review_fixes": [
+    "Strict boolean and evidence validation; no truthiness coercion.",
+    "Version, field, path and provenance validation.",
+    "Selected model determines the policy and guarded profile; explicit overrides must agree.",
+    "Real preflight always uses system DMI; injected roots cannot authorize a hardware trial.",
+    "Direct script invocation works outside the repository.",
+    "Linux integration checks use their own user-owned runtime."
+  ]
+}

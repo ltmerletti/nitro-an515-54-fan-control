@@ -1,0 +1,76 @@
+Nov 01 22:31:56 basement-server systemd[1]: Starting nitrofan.service - NitroFan NBFC fan control...
+Nov 01 22:31:57 basement-server systemd[1]: Started nitrofan.service - NitroFan NBFC fan control.
+Nov 01 22:31:57 basement-server python3[144729]: 2026-11-01 22:31:57,343 [INFO] nitrofan.server: Listening on Unix socket: /run/nitrofan/nitrofan.sock
+Nov 01 22:31:57 basement-server python3[144729]: 2026-11-01 22:31:57,343 [INFO] nitrofan.daemon: NitroFan daemon running (backend=nbfc, read_only=False, socket=/run/nitrofan/nitrofan.sock)
+Nov 01 22:31:57 basement-server python3[144729]: 2026-11-01 22:31:57,432 [INFO] nitrofan.controller: Mode changed to fixed: {'fan1': 60, 'fan2': 60}
+Nov 01 22:32:05 basement-server python3[144729]: 2026-11-01 22:32:05,375 [WARNING] nitrofan.controller: Emergency temperature reached on ['acer_temp1'] (>= 90.0 C). Forcing 100% fan speed.
+Nov 01 22:32:05 basement-server python3[144732]: 2026-11-01 22:32:05,481 [WARNING] nitrofan.nbfc_guardian: Guardian emergency cooling triggered at 90.0; sampled temperatures: {'cpu': 83.0, 'gpu': 44.0, 'acer_temp1': 92.0, 'acer_temp2': 44.0, 'acer_temp3': 50.0}
+Nov 01 22:32:09 basement-server systemd[1]: Starting nitrofan-sleep.service - Release NitroFan control during sleep...
+Nov 01 22:32:09 basement-server systemd[1]: Stopping nitrofan.service - NitroFan NBFC fan control...
+Nov 01 22:32:12 basement-server python3[144729]: 2026-11-01 22:32:12,368 [INFO] nitrofan.daemon: Cleaning up daemon resources...
+Nov 01 22:32:16 basement-server python3[144732]: 2026-11-01 22:32:16,380 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+Nov 01 22:32:16 basement-server python3[144732]: 2026-11-01 22:32:16,380 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+Nov 01 22:32:21 basement-server python3[144732]: 2026-11-01 22:32:21,390 [ERROR] nitrofan.nbfc_guardian: Firmware restoration failed; preserving the session marker
+Nov 01 22:32:21 basement-server python3[144732]: Traceback (most recent call last):
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 583, in cleanup
+Nov 01 22:32:21 basement-server python3[144732]:     auto_ok = self.set_auto()
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 564, in set_auto
+Nov 01 22:32:21 basement-server python3[144732]:     self.terminate_child()
+Nov 01 22:32:21 basement-server python3[144732]:     ~~~~~~~~~~~~~~~~~~~~^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 460, in terminate_child
+Nov 01 22:32:21 basement-server python3[144732]:     self.child_process.wait(timeout=2.0)
+Nov 01 22:32:21 basement-server python3[144732]:     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/usr/lib/python3.14/subprocess.py", line 1279, in wait
+Nov 01 22:32:21 basement-server python3[144732]:     return self._wait(timeout=timeout)
+Nov 01 22:32:21 basement-server python3[144732]:            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/usr/lib/python3.14/subprocess.py", line 2076, in _wait
+Nov 01 22:32:21 basement-server python3[144732]:     raise TimeoutExpired(self.args, timeout)
+Nov 01 22:32:21 basement-server python3[144732]: subprocess.TimeoutExpired: Command '['/usr/bin/python3', '-m', 'nitrofan.nbfc_guardian', '--exec-child', '7', '/opt/nitrofan/build/nbfc_service', '--debug', '--config-file', '/opt/nitrofan/runtime/service.json', '--embedded-controller', 'ec_sys']' timed out after 2.0 seconds
+Nov 01 22:32:21 basement-server python3[144732]: 2026-11-01 22:32:21,407 [ERROR] nitrofan.nbfc_guardian: Failed to restore or verify baseline; preserving durable session marker for recovery.
+Nov 01 22:32:21 basement-server python3[144732]: Traceback (most recent call last):
+Nov 01 22:32:21 basement-server python3[144732]:   File "<frozen runpy>", line 198, in _run_module_as_main
+Nov 01 22:32:21 basement-server python3[144732]:   File "<frozen runpy>", line 88, in _run_code
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 937, in <module>
+Nov 01 22:32:21 basement-server python3[144732]:     main()
+Nov 01 22:32:21 basement-server python3[144732]:     ~~~~^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 933, in main
+Nov 01 22:32:21 basement-server python3[144732]:     sys.exit(guardian.run())
+Nov 01 22:32:21 basement-server python3[144732]:              ~~~~~~~~~~~~^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 741, in run
+Nov 01 22:32:21 basement-server python3[144732]:     raise RuntimeError("Guardian cleanup failed; external recovery is required")
+Nov 01 22:32:21 basement-server python3[144732]: RuntimeError: Guardian cleanup failed; external recovery is required
+Nov 01 22:32:21 basement-server python3[144732]: Error in sys.excepthook:
+Nov 01 22:32:21 basement-server python3[144732]: Traceback (most recent call last):
+Nov 01 22:32:21 basement-server python3[144732]:   File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 238, in partial_apport_excepthook
+Nov 01 22:32:21 basement-server python3[144732]:     return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+Nov 01 22:32:21 basement-server python3[144732]:   File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 122, in apport_excepthook
+Nov 01 22:32:21 basement-server python3[144732]:     report["ExecutableTimestamp"] = str(int(os.stat(binary).st_mtime))
+Nov 01 22:32:21 basement-server python3[144732]:                                             ~~~~~~~^^^^^^^^
+Nov 01 22:32:21 basement-server python3[144732]: FileNotFoundError: [Errno 2] No such file or directory: '/opt/nitrofan/-m'
+Nov 01 22:32:21 basement-server python3[144732]: Original exception was:
+Nov 01 22:32:21 basement-server python3[144732]: Traceback (most recent call last):
+Nov 01 22:32:21 basement-server python3[144732]:   File "<frozen runpy>", line 198, in _run_module_as_main
+Nov 01 22:32:21 basement-server python3[144732]:   File "<frozen runpy>", line 88, in _run_code
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 937, in <module>
+Nov 01 22:32:21 basement-server python3[144732]:     main()
+Nov 01 22:32:21 basement-server python3[144732]:     ~~~~^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 933, in main
+Nov 01 22:32:21 basement-server python3[144732]:     sys.exit(guardian.run())
+Nov 01 22:32:21 basement-server python3[144732]:              ~~~~~~~~~~~~^^
+Nov 01 22:32:21 basement-server python3[144732]:   File "/opt/nitrofan/nitrofan/nbfc_guardian.py", line 741, in run
+Nov 01 22:32:21 basement-server python3[144732]:     raise RuntimeError("Guardian cleanup failed; external recovery is required")
+Nov 01 22:32:21 basement-server python3[144732]: RuntimeError: Guardian cleanup failed; external recovery is required
+Nov 01 22:32:21 basement-server python3[144729]: 2026-11-01 22:32:21,783 [INFO] nitrofan.nbfc_guardian: External recovery restored and verified firmware control
+Nov 01 22:32:22 basement-server python3[144872]: NitroFan lifecycle failed: NBFC is still running; refusing to unload its EC driver
+Nov 01 22:32:22 basement-server systemd[1]: nitrofan.service: Control process exited, code=exited, status=1/FAILURE
+Nov 01 22:32:22 basement-server systemd[1]: nitrofan.service: Failed with result 'exit-code'.
+Nov 01 22:32:22 basement-server systemd[1]: Stopped nitrofan.service - NitroFan NBFC fan control.
+Nov 01 22:32:22 basement-server systemd[1]: nitrofan.service: Consumed 13.962s CPU time over 25.438s wall clock time, 74.6M memory peak.
+Nov 01 22:32:22 basement-server python3[144813]: NitroFan lifecycle failed: NBFC is still running; refusing to unload its EC driver
+Nov 01 22:32:22 basement-server systemd[1]: nitrofan-sleep.service: Main process exited, code=exited, status=1/FAILURE
+Nov 01 22:32:22 basement-server systemd[1]: nitrofan-sleep.service: Failed with result 'exit-code'.
+Nov 01 22:32:22 basement-server systemd[1]: Failed to start nitrofan-sleep.service - Release NitroFan control during sleep.
+Nov 01 22:32:22 basement-server systemd[1]: Dependency failed for nitrofan-suspend-check.service - Verify NitroFan firmware handoff before the validation sleep.
+Nov 01 22:32:22 basement-server systemd[1]: Dependency failed for systemd-suspend.service - System Suspend.
+Nov 01 22:32:22 basement-server systemd[1]: systemd-suspend.service: Job systemd-suspend.service/start failed with result 'dependency'.
+Nov 01 22:32:22 basement-server systemd[1]: nitrofan-suspend-check.service: Job nitrofan-suspend-check.service/start failed with result 'dependency'.

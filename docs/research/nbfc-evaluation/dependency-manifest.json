@@ -1,0 +1,19 @@
+{
+  "dependency_package": "liblua5.4-0_5.4.8-1build1_amd64.deb",
+  "dependency_sha256": "ff589ea3f181b89dd76b0240f79c59ac2f13f24e2053f624f774f596c7ef7897",
+  "dependency_directory": "/home/luke/nbfc-evaluation/dependencies",
+  "programs": {
+    "nbfc_service": {
+      "version_code": 0,
+      "version": "nbfc-linux 0.5.4",
+      "help_code": 0,
+      "help": "Usage: nbfc_service [-h] [-r] [-f] [-d] [-c config] [-e EC]\n\nNoteBook FanControl service\n\nOptional arguments:\n  -h, --help            Show this help message and exit\n  --version             Show program's version number and exit\n  -r, --read-only       Start in read-only mode\n  -f, --fork            Switch process to background after successfully started\n  -d, --debug           Enable tracing of reads and writes of the embedded controller\n  -c CONFIG, --config-file CONFIG\n                        Use alternative config file (default /etc/nbfc/nbfc.json)\n  -e EC, --embedded-controller EC\n                        Specify embedded controller to use"
+    },
+    "nbfc": {
+      "version_code": 0,
+      "version": "nbfc 0.5.4",
+      "help_code": 0,
+      "help": "Usage: nbfc [-h] [--version] COMMAND [...]\n\nNoteBook FanControl CLI Client\n\nOptional arguments:\n  -h, --help            Show this help message and exit\n  --version             Show program's version number and exit\n\nCommands:\n    start               Start the service\n    stop                Stop the service\n    restart             Restart the service\n    status              Show the service status\n    sensors             Show or configure temperature sensors\n    config              List or apply configs\n    set                 Control fan speed\n    update              Download new configuration files\n    wait-for-hwmon      Wait for /sys/class/hwmon/hwmon* files\n    get-model-name      Print out model name\n    acpi-dump           Dumps information of your ACPI tables\n    rate-config         Rate a configuration file\n    test-config         Test configuration files automatically\n    xml2json            Convert an XML configuration to JSON\n    help                Show help\n    support             Show how to support the project\n    warranty            Show warranty\n    faq                 Show frequently asked questions\n\nNBFC-Linux needs your support! Run `nbfc support` for details."
+    }
+  }
+}

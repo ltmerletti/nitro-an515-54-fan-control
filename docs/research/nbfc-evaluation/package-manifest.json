@@ -1,0 +1,18 @@
+{
+  "release": "0.5.4",
+  "download_url": "https://github.com/nbfc-linux/nbfc-linux/releases/download/0.5.4/ubuntu-resolute-nbfc-linux_0.5.4_amd64.deb",
+  "sha256": "a9948da08735df3ff154638690d2941d77fdc28347bdb2ef517e0e6675910ccb",
+  "package_info": "Package: nbfc-linux\nVersion: 0.5.4\nDepends: libcurl4, liblua5.4-0, libxml2-16, acpica-tools, acpi-call, stress-ng\n",
+  "extracted_directory": "/home/luke/nbfc-evaluation/package",
+  "binaries": [
+    "/home/luke/nbfc-evaluation/package/usr/bin/nbfc_service",
+    "/home/luke/nbfc-evaluation/package/usr/share/bash-completion/completions/nbfc_service",
+    "/home/luke/nbfc-evaluation/package/usr/bin/nbfc",
+    "/home/luke/nbfc-evaluation/package/usr/share/bash-completion/completions/nbfc"
+  ],
+  "profiles": [
+    "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json"
+  ],
+  "installed_systemwide": false,
+  "service_started": false
+}

@@ -1,0 +1,234 @@
+=== NBFC Read-Only Evaluation Preflight ===
+Verified target hardware: Acer Nitro AN515-54
+Verified ec_sys write_support: N (kernel write protection active)
+Verified EC node exists: /sys/kernel/debug/ec/ec0/io
+Verified NBFC binaries, libraries, and model profile.
+Preflight checks passed.
+
+=== Phase 1: Validating config and profile with dummy controller (3s) ===
+INFO: nbfc_service: NBFC-Linux comes with no warranty. Run `nbfc warranty` for details.
+INFO: nbfc_service: NBFC-Linux needs your support. Run `nbfc support` for details.
+INFO: nbfc_service: Running version 0.5.4
+INFO: nbfc_service: SYSCONFDIR is "/etc"
+INFO: nbfc_service: DATADIR is "/usr/share"
+INFO: nbfc_service: RUNSTATEDIR is "/run"
+INFO: nbfc_service: Available Embedded Controllers: ec_sys, acpi_ec, dev_port, dummy
+INFO: nbfc_service: Read-only mode enabled
+INFO: nbfc_service: Using "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json" as model config
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp1_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp2_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp3_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp4_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp5_input)
+INFO: nbfc_service: Available temperature source: "nvme" (/sys/class/hwmon/hwmon2/temp1_input)
+INFO: nbfc_service: Available temperature source: "pch_cannonlake" (/sys/class/hwmon/hwmon3/temp1_input)
+INFO: nbfc_service: Available temperature source: "iwlwifi_1" (/sys/class/hwmon/hwmon4/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp2_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp3_input)
+INFO: nbfc_service: Available temperature source: "nvidia-ml" (none)
+INFO: nbfc_service: Using "dummy" as EmbeddedControllerType
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp1_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp2_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp3_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp4_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp5_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp1_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp2_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp3_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp4_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp5_input) as temperature source (Average)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x0)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x0)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x0)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x0)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+dummy trial reached its 3s duration and was stopped by timeout.
+Phase 1 dummy backend validation completed.
+
+=== Phase 2: Bounded real EC read-only trial (45s) ===
+Executing: nbfc_service --read-only --debug --config-file /home/luke/nbfc-evaluation/service.json --embedded-controller ec_sys
+INFO: nbfc_service: NBFC-Linux comes with no warranty. Run `nbfc warranty` for details.
+INFO: nbfc_service: NBFC-Linux needs your support. Run `nbfc support` for details.
+INFO: nbfc_service: Running version 0.5.4
+INFO: nbfc_service: SYSCONFDIR is "/etc"
+INFO: nbfc_service: DATADIR is "/usr/share"
+INFO: nbfc_service: RUNSTATEDIR is "/run"
+INFO: nbfc_service: Available Embedded Controllers: ec_sys, acpi_ec, dev_port, dummy
+INFO: nbfc_service: Read-only mode enabled
+INFO: nbfc_service: Using "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json" as model config
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp1_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp2_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp3_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp4_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp5_input)
+INFO: nbfc_service: Available temperature source: "nvme" (/sys/class/hwmon/hwmon2/temp1_input)
+INFO: nbfc_service: Available temperature source: "pch_cannonlake" (/sys/class/hwmon/hwmon3/temp1_input)
+INFO: nbfc_service: Available temperature source: "iwlwifi_1" (/sys/class/hwmon/hwmon4/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp2_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp3_input)
+INFO: nbfc_service: Available temperature source: "nvidia-ml" (none)
+INFO: nbfc_service: Using "ec_sys" as EmbeddedControllerType
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp1_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp2_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp3_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp4_input) as temperature source (Average)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp5_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp1_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp2_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp3_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp4_input) as temperature source (Average)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "coretemp" (/sys/class/hwmon/hwmon1/temp5_input) as temperature source (Average)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xB44)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0xAA7)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xB44)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0xAA7)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAA7)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0xA5E)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+
+--- [t+5s] Native NBFC Status Snapshot ---
+DEBUG: nbfc_service: Server_Loop(timeout=1055): num clients: 1
+DEBUG: nbfc_service: Server_HandleClient(fd=19)
+DEBUG: nbfc_service: read(19, ..., 255)
+DEBUG: nbfc_service: Server_Loop(timeout=1053): num clients: 0
+{
+  "PID": 56938,
+  "SelectedConfigId": "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json",
+  "ReadOnly": true,
+  "Fans": [
+    {
+      "Name": "CPU fan",
+      "Temperature": 44.900002,
+      "CriticalTemperature": 90.000000,
+      "AutoMode": true,
+      "Critical": false,
+      "CurrentSpeed": 44.544266,
+      "TargetSpeed": 0.000000,
+      "RequestedSpeed": 0.000000,
+      "SpeedSteps": 6122
+    },
+    {
+      "Name": "GPU fan",
+      "Temperature": 44.900002,
+      "CriticalTemperature": 90.000000,
+      "AutoMode": true,
+      "Critical": false,
+      "CurrentSpeed": 43.351849,
+      "TargetSpeed": 0.000000,
+      "RequestedSpeed": 0.000000,
+      "SpeedSteps": 6122
+    }
+  ]
+}------------------------------------------
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x9EE)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x915)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8E0)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8E0)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8E0)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+
+--- [t+25s] Native NBFC Status Snapshot ---
+DEBUG: nbfc_service: Server_Loop(timeout=2059): num clients: 1
+DEBUG: nbfc_service: Server_HandleClient(fd=19)
+DEBUG: nbfc_service: read(19, ..., 255)
+DEBUG: nbfc_service: Server_Loop(timeout=2058): num clients: 0
+{
+  "PID": 56938,
+  "SelectedConfigId": "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json",
+  "ReadOnly": true,
+  "Fans": [
+    {
+      "Name": "CPU fan",
+      "Temperature": 44.000000,
+      "CriticalTemperature": 90.000000,
+      "AutoMode": true,
+      "Critical": false,
+      "CurrentSpeed": 39.202873,
+      "TargetSpeed": 0.000000,
+      "RequestedSpeed": 0.000000,
+      "SpeedSteps": 6122
+    },
+    {
+      "Name": "GPU fan",
+      "Temperature": 44.000000,
+      "CriticalTemperature": 90.000000,
+      "AutoMode": true,
+      "Critical": false,
+      "CurrentSpeed": 37.112053,
+      "TargetSpeed": 0.000000,
+      "RequestedSpeed": 0.000000,
+      "SpeedSteps": 6122
+    }
+  ]
+}-------------------------------------------
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8E0)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xA8E)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xD78)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8E0)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xFA0)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+ec_sys trial reached its 45s duration and was stopped by timeout.
+Phase 2 trial completed.
+
+=== Post-Trial Verification ===
+ec_sys write_support: N
+Confirmed: nbfc_service process terminated cleanly.
+Read-only trial finished. Review output above for EC register read traces (0x13, 0x15).

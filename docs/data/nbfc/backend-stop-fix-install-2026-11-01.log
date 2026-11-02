@@ -1,0 +1,10 @@
+Cloning into '/tmp/nitrofan-install-6ixp5cz_/upstream'...
+done.
+HEAD is now at 9da010d Updated PKGBUILD
+Guarded NBFC built successfully.
+Service SHA256: 3bc8676381dcdd3eaa2cf549da55694dbbf46313dfc44d81f3e6205f88b209e3
+uid=1000(luke) gid=1000(luke) groups=1000(luke),4(adm),24(cdrom),27(sudo),29(audio),30(dip),46(plugdev),100(users),101(lxd),983(docker),982(ollama),981(nitrofan)
+/usr/lib/systemd/system/xfs_scrub_all.service:26: Support for option CPUAccounting= has been removed and it is ignored
+/usr/lib/systemd/system/system-xfs_scrub.slice:15: Support for option CPUAccounting= has been removed and it is ignored
+Backend installed. Services remain stopped and are not enabled at boot.
+Run sudo /usr/bin/python3 /opt/nitrofan/tools/validate_backend.py before enabling them.

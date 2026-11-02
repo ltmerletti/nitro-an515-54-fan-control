@@ -1,0 +1,225 @@
+2026-11-01 19:27:13,623 INFO Read-only preflight passed. No control writes performed.
+Enabling EC writes for one 30-second, maximum-only NBFC trial.
+2026-11-01 19:27:13,747 INFO Starting 30s maximum-only trial; logs: /home/luke/nbfc-evaluation/reviewed-runtime/logs/trial-ckr44iqd
+INFO: nbfc_service: NBFC-Linux comes with no warranty. Run `nbfc warranty` for details.
+INFO: nbfc_service: NBFC-Linux needs your support. Run `nbfc support` for details.
+INFO: nbfc_service: Running version 0.5.4
+INFO: nbfc_service: SYSCONFDIR is "/home/luke/nbfc-evaluation/reviewed-runtime/etc"
+INFO: nbfc_service: DATADIR is "/home/luke/nbfc-evaluation/reviewed-runtime/share"
+INFO: nbfc_service: RUNSTATEDIR is "/home/luke/nbfc-evaluation/reviewed-runtime/run"
+INFO: nbfc_service: Available Embedded Controllers: ec_sys
+INFO: nbfc_service: Using "/home/luke/nbfc-evaluation/reviewed/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_max.json" as model config
+WARNING: nbfc_service: /home/luke/nbfc-evaluation/reviewed/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_max.json: FanConfigurations[0]: No threshold with FanSpeed == 0 found
+WARNING: nbfc_service: /home/luke/nbfc-evaluation/reviewed/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_max.json: FanConfigurations[1]: No threshold with FanSpeed == 0 found
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp1_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp2_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp3_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp4_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp5_input)
+INFO: nbfc_service: Available temperature source: "nvme" (/sys/class/hwmon/hwmon2/temp1_input)
+INFO: nbfc_service: Available temperature source: "pch_cannonlake" (/sys/class/hwmon/hwmon3/temp1_input)
+INFO: nbfc_service: Available temperature source: "iwlwifi_1" (/sys/class/hwmon/hwmon4/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp2_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp3_input)
+INFO: nbfc_service: Available temperature source: "nvidia-ml" (none)
+INFO: nbfc_service: Using "ec_sys" as EmbeddedControllerType
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+INFO: nbfc_service: Fan #0 (CPU fan) uses "anonymous" (/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input) as temperature source (Max)
+INFO: nbfc_service: Fan #1 (GPU fan) uses "anonymous" (/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input) as temperature source (Max)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x960)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x8CF)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: ReadWord(0x13, out = 0x17EA)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x17EA)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: WriteByte(0x22, 0x4)
+DEBUG: nbfc_service: WriteByte(0x21, 0x10)
+DEBUG: nbfc_service: WriteByte(0x10, 0x1)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+2026-11-01 19:27:43,910 INFO Saved EC bytes restored and verified. Firmware behavior still needs observation.
+=== EC write audit: /home/luke/nbfc-evaluation/reviewed-runtime/logs/trial-ckr44iqd/writes.jsonl ===
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x22","count":1,"old":["0x00"],"new":["0x0C"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x22","count":1,"old":["0x00"],"new":["0x0C"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x21","count":1,"old":["0x00"],"new":["0x30"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x21","count":1,"old":["0x00"],"new":["0x30"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x10","count":1,"old":["0x00"],"new":["0x00"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x10","count":1,"old":["0x00"],"new":["0x00"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x22","count":1,"old":["0x0C"],"new":["0x0C"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x22","count":1,"old":["0x0C"],"new":["0x0C"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x21","count":1,"old":["0x30"],"new":["0x30"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x21","count":1,"old":["0x30"],"new":["0x30"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x10","count":1,"old":["0x00"],"new":["0x00"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x10","count":1,"old":["0x00"],"new":["0x00"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x00","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x00","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x00","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x00","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x22","count":1,"old":["0x0C"],"new":["0x0C"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x22","count":1,"old":["0x0C"],"new":["0x0C"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x21","count":1,"old":["0x30"],"new":["0x30"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x21","count":1,"old":["0x30"],"new":["0x30"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x10","count":1,"old":["0x00"],"new":["0x00"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x10","count":1,"old":["0x00"],"new":["0x00"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561233,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561236,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561236,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561236,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561236,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561239,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561239,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561239,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561239,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561242,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561242,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561242,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561242,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561245,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561245,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561245,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561246,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561249,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561249,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561249,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561249,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561252,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561252,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561252,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561252,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561255,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561255,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561255,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561255,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561258,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561258,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561258,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561258,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561261,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561261,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561261,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561261,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x22","count":1,"old":["0x0C"],"new":["0x04"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561263,"action":"ALLOWED","offset":"0x22","count":1,"old":["0x0C"],"new":["0x04"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x21","count":1,"old":["0x30"],"new":["0x10"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561263,"action":"ALLOWED","offset":"0x21","count":1,"old":["0x30"],"new":["0x10"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x10","count":1,"old":["0x00"],"new":["0x01"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561263,"action":"ALLOWED","offset":"0x10","count":1,"old":["0x00"],"new":["0x01"],"reason":"","context":"EC_SysLinux_WriteByte"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561263,"action":"ALLOWED","offset":"0x37","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561263,"action":"ALLOWED","offset":"0x3A","count":2,"old":["0x64","0x00"],"new":["0x64","0x00"],"reason":"","context":"EC_SysLinux_WriteWord"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x22","count":1,"old":["0x04"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"RESTORED","offset":"0x22","count":1,"old":["0x04"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x21","count":1,"old":["0x10"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"RESTORED","offset":"0x21","count":1,"old":["0x10"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x10","count":1,"old":["0x01"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"RESTORED","offset":"0x10","count":1,"old":["0x01"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x37","count":1,"old":["0x64"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"RESTORED","offset":"0x37","count":1,"old":["0x64"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"PROPOSED","offset":"0x3A","count":1,"old":["0x64"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+{"timestamp":1793561263,"action":"RESTORED","offset":"0x3A","count":1,"old":["0x64"],"new":["0x00"],"reason":"","context":"restore_snapshot"}
+
+=== Temperature and RPM samples: /home/luke/nbfc-evaluation/reviewed-runtime/logs/trial-ckr44iqd/telemetry.jsonl ===
+{"timestamp": "2026-11-01T19:27:13Z", "elapsed_s": 6.730006134603173e-07, "phase": "active_trial", "cpu_package_temp": 56.0, "tachometers": {"fan1": 2400, "fan2": 2272}}
+{"timestamp": "2026-11-01T19:27:14Z", "elapsed_s": 1.001268299000003, "phase": "active_trial", "cpu_package_temp": 49.0, "tachometers": {"fan1": 6122, "fan2": 5660}}
+{"timestamp": "2026-11-01T19:27:15Z", "elapsed_s": 2.006267802000366, "phase": "active_trial", "cpu_package_temp": 50.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:16Z", "elapsed_s": 3.012116354000682, "phase": "active_trial", "cpu_package_temp": 48.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:17Z", "elapsed_s": 4.016954501001237, "phase": "active_trial", "cpu_package_temp": 50.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:18Z", "elapsed_s": 5.022024252000847, "phase": "active_trial", "cpu_package_temp": 48.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:19Z", "elapsed_s": 6.0268361090002145, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:20Z", "elapsed_s": 7.028188480000608, "phase": "active_trial", "cpu_package_temp": 91.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:21Z", "elapsed_s": 8.02960848300063, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:22Z", "elapsed_s": 9.03096601100151, "phase": "active_trial", "cpu_package_temp": 50.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:23Z", "elapsed_s": 10.035049413001616, "phase": "active_trial", "cpu_package_temp": 49.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:24Z", "elapsed_s": 11.03918850700029, "phase": "active_trial", "cpu_package_temp": 48.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:25Z", "elapsed_s": 12.043366118999984, "phase": "active_trial", "cpu_package_temp": 49.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:26Z", "elapsed_s": 13.048012620000009, "phase": "active_trial", "cpu_package_temp": 48.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:27Z", "elapsed_s": 14.052716625001267, "phase": "active_trial", "cpu_package_temp": 47.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:28Z", "elapsed_s": 15.057537406000847, "phase": "active_trial", "cpu_package_temp": 47.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:29Z", "elapsed_s": 16.062118042000293, "phase": "active_trial", "cpu_package_temp": 47.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:30Z", "elapsed_s": 17.06694004200108, "phase": "active_trial", "cpu_package_temp": 51.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:31Z", "elapsed_s": 18.070736659999966, "phase": "active_trial", "cpu_package_temp": 49.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:32Z", "elapsed_s": 19.07546472500144, "phase": "active_trial", "cpu_package_temp": 81.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:33Z", "elapsed_s": 20.07672950900087, "phase": "active_trial", "cpu_package_temp": 91.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:34Z", "elapsed_s": 21.07820262000132, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:35Z", "elapsed_s": 22.07969205900008, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:36Z", "elapsed_s": 23.081165379000595, "phase": "active_trial", "cpu_package_temp": 84.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:37Z", "elapsed_s": 24.08253942200099, "phase": "active_trial", "cpu_package_temp": 93.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:38Z", "elapsed_s": 25.083973015000083, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:39Z", "elapsed_s": 26.085486477000813, "phase": "active_trial", "cpu_package_temp": 83.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:40Z", "elapsed_s": 27.086779855000714, "phase": "active_trial", "cpu_package_temp": 91.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:41Z", "elapsed_s": 28.088272048000363, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:42Z", "elapsed_s": 29.08972883000024, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:43Z", "elapsed_s": 30.001524304001578, "phase": "active_trial", "cpu_package_temp": 92.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:43Z", "elapsed_s": 1.8209993868367746e-06, "phase": "post_stop_monitoring", "cpu_package_temp": 91.0, "tachometers": {"fan1": 6122, "fan2": 6122}}
+{"timestamp": "2026-11-01T19:27:44Z", "elapsed_s": 1.0013990660008858, "phase": "post_stop_monitoring", "cpu_package_temp": 86.0, "tachometers": {"fan1": 3488, "fan2": 3191}}
+{"timestamp": "2026-11-01T19:27:45Z", "elapsed_s": 2.002861770999516, "phase": "post_stop_monitoring", "cpu_package_temp": 92.0, "tachometers": {"fan1": 2631, "fan2": 2479}}
+{"timestamp": "2026-11-01T19:27:46Z", "elapsed_s": 3.004327197000748, "phase": "post_stop_monitoring", "cpu_package_temp": 92.0, "tachometers": {"fan1": 2654, "fan2": 2419}}
+{"timestamp": "2026-11-01T19:27:47Z", "elapsed_s": 4.005781746000139, "phase": "post_stop_monitoring", "cpu_package_temp": 89.0, "tachometers": {"fan1": 2857, "fan2": 2419}}
+
+Bounded trial completed and saved bytes verified. Physical fan response still needs review.
+EC write support is N again.

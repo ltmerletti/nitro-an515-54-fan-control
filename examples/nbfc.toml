@@ -1,0 +1,18 @@
+# NitroFan NBFC configuration for Acer Nitro AN515-54.
+#
+# Delegates active EC writes exclusively to the guarded upstream NBFC service
+# with bounded registers and automatic firmware fallback.
+# Supported modes: "auto" (firmware), "max" (100%), "fixed" (combined 25..100%).
+
+backend = "nbfc"
+tick_s = 2.0
+reassert_s = 10.0
+min_percent = 25
+emergency_c = 90
+startup_mode = "auto"
+
+[nbfc]
+manifest_path = "/opt/nitrofan/build/manifest.json"
+runtime_dir = "/opt/nitrofan/runtime"
+# policy_path = "/opt/nitrofan/tools/ec_guard/config/ec_guard_control_policy.json"
+# profile_path = "/opt/nitrofan/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json"

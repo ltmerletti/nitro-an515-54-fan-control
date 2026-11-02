@@ -1,0 +1,83 @@
+{
+  "source": "docs/data/ec-passive-baseline-2026-11-01.jsonl",
+  "sha256": "32b40f6324b811ce301d851a028184d1f28c4b3d5928b29e88d55dd841764025",
+  "system_product": "Nitro AN515-54",
+  "bios": "V1.33",
+  "first_timestamp": "2026-11-01T17:42:48.724486+00:00",
+  "last_timestamp": "2026-11-01T17:43:52.721644+00:00",
+  "samples": 30,
+  "duration_s": 63.9972,
+  "registers_per_sample": 256,
+  "acquisition_duration_range_s": [
+    0.173,
+    0.3004
+  ],
+  "readback_findings": [
+    {
+      "fan": "fan1",
+      "low_register": "0x13",
+      "high_register": "0x14",
+      "encoding": "u16_le",
+      "units": "rpm",
+      "samples": 30,
+      "exact_matches": 27,
+      "mean_absolute_error_rpm": 4.366666666666666,
+      "maximum_absolute_error_rpm": 53,
+      "correlation": 0.9997647562527208,
+      "observed_rpm_range": [
+        2380,
+        4000
+      ]
+    },
+    {
+      "fan": "fan2",
+      "low_register": "0x15",
+      "high_register": "0x16",
+      "encoding": "u16_le",
+      "units": "rpm",
+      "samples": 30,
+      "exact_matches": 29,
+      "mean_absolute_error_rpm": 0.8333333333333334,
+      "maximum_absolute_error_rpm": 25,
+      "correlation": 0.999972043830688,
+      "observed_rpm_range": [
+        2255,
+        3846
+      ]
+    }
+  ],
+  "control_register_observations": {
+    "0x03": [
+      33
+    ],
+    "0x21": [
+      0
+    ],
+    "0x22": [
+      0
+    ],
+    "0x37": [
+      0
+    ],
+    "0x3a": [
+      0
+    ]
+  },
+  "temperature_range_c": {
+    "cpu": [
+      49.0,
+      95.0
+    ],
+    "gpu": [
+      42.0,
+      45.0
+    ]
+  },
+  "control_verified": false,
+  "cpu_gpu_fan_assignment_verified": false,
+  "limitations": [
+    "Sequential EC bytes and hwmon reads are not an atomic snapshot.",
+    "No control writes or artificial workload were performed during collection.",
+    "Correlation supports RPM readback, not control register semantics or CPU/GPU fan assignment."
+  ]
+}

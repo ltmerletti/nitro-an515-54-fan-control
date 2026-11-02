@@ -1,0 +1,91 @@
+test_close_during_emergency_reaps_native_and_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_close_during_emergency_reaps_native_and_restores_baseline) ... 2026-11-02 19:05:06,065 [WARNING] nitrofan.nbfc_guardian: Guardian emergency cooling triggered at 90.0; sampled temperatures: {'cpu': 92.0, 'gpu': None}
+2026-11-02 19:05:06,133 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-02 19:05:06,133 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_cpu_sensor_loss_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_cpu_sensor_loss_restores_baseline) ... 2026-11-02 19:05:09,504 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-02 19:05:09,504 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_forced_native_and_guardian_death_then_fresh_manual_control (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_forced_native_and_guardian_death_then_fresh_manual_control)
+Exercise whole-service SIGKILL artifacts across two guardian lifetimes. ... 2026-11-02 19:05:10,179 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-02 19:05:10,179 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_guarded_native_cannot_detach_from_guardian (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_guarded_native_cannot_detach_from_guardian) ... ok
+test_guardian_sigkill_and_external_recover (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_guardian_sigkill_and_external_recover) ... ok
+test_native_child_death_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_native_child_death_restores_baseline) ... 2026-11-02 19:05:11,818 [ERROR] nitrofan.nbfc_guardian: NBFC child process died unexpectedly (code=-9); restoring firmware Auto
+2026-11-02 19:05:11,819 [ERROR] nitrofan.nbfc_guardian: Native NBFC log tail:  nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAE4)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+DEBUG: nbfc_service: WriteByte(0x22, 0x4)
+DEBUG: nbfc_service: WriteByte(0x21, 0x10)
+DEBUG: nbfc_service: WriteByte(0x10, 0x1)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+INFO: nbfc_service: NBFC-Linux comes with no warranty. Run `nbfc warranty` for details.
+INFO: nbfc_service: NBFC-Linux needs your support. Run `nbfc support` for details.
+INFO: nbfc_service: Running version 0.5.4
+INFO: nbfc_service: SYSCONFDIR is "/home/luke/nbfc-evaluation/backend-restart-runtime/etc"
+INFO: nbfc_service: DATADIR is "/home/luke/nbfc-evaluation/backend-restart-runtime/share"
+INFO: nbfc_service: RUNSTATEDIR is "/home/luke/nbfc-evaluation/backend-restart-runtime/run"
+INFO: nbfc_service: Available Embedded Controllers: ec_sys
+INFO: nbfc_service: Using "/home/luke/nbfc-evaluation/final-check/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json" as model config
+WARNING: nbfc_service: /home/luke/nbfc-evaluation/final-check/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json: FanConfigurations[0]: No threshold with FanSpeed == 0 found
+WARNING: nbfc_service: /home/luke/nbfc-evaluation/final-check/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json: FanConfigurations[1]: No threshold with FanSpeed == 0 found
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp1_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp2_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp3_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp4_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp5_input)
+INFO: nbfc_service: Available temperature source: "nvme" (/sys/class/hwmon/hwmon2/temp1_input)
+INFO: nbfc_service: Available temperature source: "pch_cannonlake" (/sys/class/hwmon/hwmon3/temp1_input)
+INFO: nbfc_service: Available temperature source: "iwlwifi_1" (/sys/class/hwmon/hwmon4/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp2_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp3_input)
+INFO: nbfc_service: Available temperature source: "nvidia-ml" (none)
+INFO: nbfc_service: Using "ec_sys" as EmbeddedControllerType
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+INFO: nbfc_service: Fan #0 (Fan 1) uses "anonymous" (/home/luke/nbfc-evaluation/backend-restart-runtime/sys/class/hwmon/hwmon0/temp1_input) as temperature source (Max)
+INFO: nbfc_service: Fan #1 (Fan 2) uses "anonymous" (/home/luke/nbfc-evaluation/backend-restart-runtime/sys/class/hwmon/hwmon0/temp1_input) as temperature source (Max)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAE4)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: WriteWord(0x37, 0x32)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x32)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAE4)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: WriteWord(0x37, 0x32)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x32)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+
+2026-11-02 19:05:11,871 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-02 19:05:11,871 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_overtemp_emergency_and_hysteresis (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_overtemp_emergency_and_hysteresis) ... 2026-11-02 19:05:13,117 [WARNING] nitrofan.nbfc_guardian: Guardian emergency cooling triggered at 90.0; sampled temperatures: {'cpu': 92.0, 'gpu': None}
+2026-11-02 19:05:15,189 [INFO] nitrofan.nbfc_guardian: Guardian detected cool temperatures (<= 80.0C); clearing emergency
+2026-11-02 19:05:15,528 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-02 19:05:15,528 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_parent_pipe_eof_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_parent_pipe_eof_restores_baseline) ... ok
+test_speeds_reach_ec_lowbytes_and_equal_modes (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_speeds_reach_ec_lowbytes_and_equal_modes) ... 2026-11-02 19:05:16,868 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-02 19:05:16,868 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_stale_state_does_not_restore_manual (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_stale_state_does_not_restore_manual) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 11.893s
+
+OK

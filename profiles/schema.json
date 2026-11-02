@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NitroFanModelCatalog",
+  "description": "Schema for the multi-model profile catalogue in NitroFan.",
+  "type": "object",
+  "required": [
+    "version",
+    "upstream",
+    "models"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "upstream": {
+      "type": "object",
+      "required": [
+        "repository",
+        "version",
+        "commit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "type": "string",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "model_id",
+          "vendor",
+          "product_name",
+          "aliases",
+          "support_status",
+          "capabilities",
+          "next_steps"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "model_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "product_name": {
+            "type": "string"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "support_status": {
+            "type": "string",
+            "enum": [
+              "guarded_max_trial_eligible",
+              "upstream_only",
+              "needs_profile",
+              "unsupported"
+            ]
+          },
+          "upstream_profile": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*\\\\)[^\\u0000]+$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "local_artifacts": {
+            "type": "object",
+            "required": [
+              "policy_path",
+              "guarded_profile_path"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "policy_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*\\\\)[^\\u0000]+$"
+              },
+              "guarded_profile_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*\\\\)[^\\u0000]+$"
+              }
+            }
+          },
+          "evidence": {
+            "type": "object",
+            "required": [
+              "tested_bios",
+              "tested_date",
+              "trial_type",
+              "fan_max_rpm",
+              "baseline_restored",
+              "write_support_restored",
+              "notes",
+              "source_paths"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "tested_bios": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "tested_date": {
+                "type": "string"
+              },
+              "trial_type": {
+                "type": "string"
+              },
+              "fan_max_rpm": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "baseline_restored": {
+                "type": "boolean"
+              },
+              "write_support_restored": {
+                "type": "boolean"
+              },
+              "notes": {
+                "type": "string"
+              },
+              "source_paths": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*\\\\)[^\\u0000]+$"
+                }
+              }
+            }
+          },
+          "capabilities": {
+            "type": "object",
+            "required": [
+              "read_only_monitoring",
+              "guarded_max_trial",
+              "production_control"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "read_only_monitoring": {
+                "type": "boolean"
+              },
+              "guarded_max_trial": {
+                "type": "boolean"
+              },
+              "production_control": {
+                "type": "boolean",
+                "const": false
+              }
+            }
+          },
+          "next_steps": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "support_status": {
+                  "const": "guarded_max_trial_eligible"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "upstream_profile",
+                "local_artifacts",
+                "evidence"
+              ],
+              "properties": {
+                "upstream_profile": {
+                  "type": "object"
+                },
+                "capabilities": {
+                  "properties": {
+                    "guarded_max_trial": {
+                      "const": true
+                    }
+                  }
+                },
+                "evidence": {
+                  "properties": {
+                    "tested_bios": {
+                      "minItems": 1
+                    },
+                    "baseline_restored": {
+                      "const": true
+                    },
+                    "write_support_restored": {
+                      "const": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "support_status": {
+                  "const": "upstream_only"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "upstream_profile"
+              ],
+              "properties": {
+                "upstream_profile": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "support_status": {
+                  "const": "needs_profile"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "upstream_profile": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "support_status": {
+                  "enum": [
+                    "needs_profile",
+                    "upstream_only",
+                    "unsupported"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capabilities": {
+                  "properties": {
+                    "guarded_max_trial": {
+                      "const": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1
+    }
+  }
+}

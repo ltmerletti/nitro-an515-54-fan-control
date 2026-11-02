@@ -1,0 +1,305 @@
+{
+  "source": "docs/data/nbfc/maximum-2026-11-01.log",
+  "sha256": "dfba3c34e6825817de1fd878a33daead198585402958a0d0e83d5af1d122df38",
+  "started_utc": "2026-11-01T19:27:13Z",
+  "last_observation_utc": "2026-11-01T19:27:47Z",
+  "requested_duration_s": 30,
+  "active_last_elapsed_s": 30.001524304001578,
+  "active_samples": 31,
+  "post_stop_samples": 5,
+  "fan_rpm_at_start": {
+    "fan1": 2400,
+    "fan2": 2272
+  },
+  "maximum_observed_rpm": {
+    "fan1": 6122,
+    "fan2": 6122
+  },
+  "both_fans_reached_6122_after_s": 2.006267802000366,
+  "fan_rpm_post_stop_last": {
+    "fan1": 2857,
+    "fan2": 2419
+  },
+  "cpu_temperature_range_c": [
+    47.0,
+    93.0
+  ],
+  "active_write_calls": 36,
+  "restore_write_calls": 5,
+  "write_offsets_including_word_neighbors": [
+    16,
+    33,
+    34,
+    55,
+    56,
+    58,
+    59
+  ],
+  "unlock_0x03_written": false,
+  "saved_registers_verified": true,
+  "write_support_after": "N",
+  "nbfc_processes_after": 0,
+  "maximum_control_short_trial_verified": true,
+  "reduced_speed_control_verified": false,
+  "five_minute_holds_verified": false,
+  "firmware_handoff_short_observation": "RPM fell after settings restored; long-duration verification pending",
+  "limitations": [
+    "Both fans driven together; physical CPU/GPU assignment unverified.",
+    "Active 100% request lasted 30 seconds; 30% and five-minute holds remain untested.",
+    "CPU still reached 93 C at maximum fans; workloads were not controlled for a thermal comparison."
+  ],
+  "series": [
+    [
+      0.0,
+      56.0,
+      2400,
+      2272,
+      "active_trial"
+    ],
+    [
+      1.0,
+      49.0,
+      6122,
+      5660,
+      "active_trial"
+    ],
+    [
+      2.0,
+      50.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      3.0,
+      48.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      4.0,
+      50.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      5.0,
+      48.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      6.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      7.0,
+      91.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      8.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      9.0,
+      50.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      10.0,
+      49.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      11.0,
+      48.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      12.0,
+      49.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      13.0,
+      48.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      14.0,
+      47.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      15.0,
+      47.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      16.0,
+      47.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      17.0,
+      51.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      18.0,
+      49.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      19.0,
+      81.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      20.0,
+      91.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      21.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      22.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      23.0,
+      84.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      24.0,
+      93.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      25.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      26.0,
+      83.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      27.0,
+      91.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      28.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      29.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      30.0,
+      92.0,
+      6122,
+      6122,
+      "active_trial"
+    ],
+    [
+      30.0,
+      91.0,
+      6122,
+      6122,
+      "post_stop_monitoring"
+    ],
+    [
+      31.0,
+      86.0,
+      3488,
+      3191,
+      "post_stop_monitoring"
+    ],
+    [
+      32.0,
+      92.0,
+      2631,
+      2479,
+      "post_stop_monitoring"
+    ],
+    [
+      33.0,
+      92.0,
+      2654,
+      2419,
+      "post_stop_monitoring"
+    ],
+    [
+      34.0,
+      89.0,
+      2857,
+      2419,
+      "post_stop_monitoring"
+    ]
+  ]
+}

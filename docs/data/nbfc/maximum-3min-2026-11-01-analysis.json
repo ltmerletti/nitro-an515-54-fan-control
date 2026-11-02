@@ -1,0 +1,834 @@
+{
+  "source": "docs/data/nbfc/maximum-3min-2026-11-01.log",
+  "sha256": "6bcbecfddd4db69a7ecfb98c1ac5d3400f2a3e9f338b40b670d259047f2d8d15",
+  "requested_duration_s": 180,
+  "active_last_elapsed_s": 180.0013561220003,
+  "active_samples": 181,
+  "observer_samples": 69,
+  "phase_boundaries_s": {
+    "maximum_start": 30.214173793792725,
+    "saved_bytes_restored": 210.3321738243103,
+    "firmware_recovery": 215.55356884002686
+  },
+  "phase_statistics": {
+    "firmware_before": {
+      "cpu": {
+        "n": 8,
+        "min": 50.0,
+        "median": 51.5,
+        "mean": 63.125,
+        "max": 92.0
+      },
+      "gpu": {
+        "n": 8,
+        "min": 44.0,
+        "median": 44.0,
+        "mean": 44.0,
+        "max": 44.0
+      },
+      "fan1": {
+        "n": 8,
+        "min": 2400,
+        "median": 2400.0,
+        "mean": 2426,
+        "max": 2608
+      },
+      "fan2": {
+        "n": 8,
+        "min": 2255,
+        "median": 2255.0,
+        "mean": 2285.125,
+        "max": 2479
+      },
+      "mic_dbfs": {
+        "n": 7,
+        "min": -68.64,
+        "median": -68.28,
+        "mean": -68.34428571428572,
+        "max": -68.11,
+        "energy_mean_dbfs": -68.33982943297801
+      }
+    },
+    "maximum": {
+      "cpu": {
+        "n": 45,
+        "min": 42.0,
+        "median": 48.0,
+        "mean": 55.17777777777778,
+        "max": 92.0
+      },
+      "gpu": {
+        "n": 45,
+        "min": 36.0,
+        "median": 39.0,
+        "mean": 39.355555555555554,
+        "max": 44.0
+      },
+      "fan1": {
+        "n": 45,
+        "min": 6122,
+        "median": 6122,
+        "mean": 6122,
+        "max": 6122
+      },
+      "fan2": {
+        "n": 45,
+        "min": 6122,
+        "median": 6122,
+        "mean": 6122,
+        "max": 6122
+      },
+      "mic_dbfs": {
+        "n": 44,
+        "min": -49.91,
+        "median": -49.765,
+        "mean": -49.76704545454545,
+        "max": -49.62,
+        "energy_mean_dbfs": -49.76655155624711
+      }
+    },
+    "maximum_last_minute": {
+      "cpu": {
+        "n": 15,
+        "min": 42.0,
+        "median": 44.0,
+        "mean": 48.93333333333333,
+        "max": 67.0
+      },
+      "gpu": {
+        "n": 15,
+        "min": 36.0,
+        "median": 37.0,
+        "mean": 37.13333333333333,
+        "max": 39.0
+      },
+      "fan1": {
+        "n": 15,
+        "min": 6122,
+        "median": 6122,
+        "mean": 6122,
+        "max": 6122
+      },
+      "fan2": {
+        "n": 15,
+        "min": 6122,
+        "median": 6122,
+        "mean": 6122,
+        "max": 6122
+      },
+      "mic_dbfs": {
+        "n": 14,
+        "min": -49.84,
+        "median": -49.765,
+        "mean": -49.76357142857143,
+        "max": -49.67,
+        "energy_mean_dbfs": -49.76329722699386
+      }
+    },
+    "firmware_recovery": {
+      "cpu": {
+        "n": 15,
+        "min": 45.0,
+        "median": 64.0,
+        "mean": 64.0,
+        "max": 92.0
+      },
+      "gpu": {
+        "n": 15,
+        "min": 38.0,
+        "median": 39.0,
+        "mean": 38.93333333333333,
+        "max": 40.0
+      },
+      "fan1": {
+        "n": 15,
+        "min": 2941,
+        "median": 3571,
+        "mean": 3583.4666666666667,
+        "max": 4000
+      },
+      "fan2": {
+        "n": 15,
+        "min": 2702,
+        "median": 3260,
+        "mean": 3262.4666666666667,
+        "max": 3846
+      },
+      "mic_dbfs": {
+        "n": 15,
+        "min": -66.39,
+        "median": -64.0,
+        "mean": -64.09866666666667,
+        "max": -62.04,
+        "energy_mean_dbfs": -63.91819062753328
+      }
+    }
+  },
+  "median_mic_increase_db": 18.515,
+  "both_fans_reached_max_after_s": 2.0024491630010743,
+  "active_cpu_c": {
+    "n": 181,
+    "min": 42.0,
+    "median": 47.0,
+    "mean": 55.049723756906076,
+    "max": 92.0
+  },
+  "post_stop_last": {
+    "timestamp": "2026-11-01T19:41:31Z",
+    "elapsed_s": 4.005521266999494,
+    "phase": "post_stop_monitoring",
+    "cpu_package_temp": 92.0,
+    "tachometers": {
+      "fan1": 2542,
+      "fan2": 2542
+    }
+  },
+  "active_write_calls": 136,
+  "restore_write_calls": 5,
+  "write_offsets": [
+    16,
+    33,
+    34,
+    55,
+    56,
+    58,
+    59
+  ],
+  "unlock_0x03_written": false,
+  "audit_matches_active_policy": true,
+  "saved_bytes_restored_and_verified": true,
+  "write_support_after": "N",
+  "nbfc_processes_after": 0,
+  "mic_clipped_samples": 0,
+  "mic_missing_samples": 0,
+  "limitations": [
+    "Workload and CPU/GPU power were not measured or held constant; temperature changes are observational.",
+    "Baseline has eight sensor samples and seven wholly contained microphone windows; maximum has 45 sensor samples and 44 microphone windows.",
+    "Microphone levels are uncalibrated dBFS; gain control in firmware or the driver is unverified.",
+    "Mic window timing is approximate (two-second warmup, then one-second measurement, plus sensor-query latency).",
+    "Reduced speeds, CPU/GPU fan assignment and five-minute reliability checks remain unverified."
+  ],
+  "observations": [
+    {
+      "t": 0.0,
+      "cpu": 52.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2255,
+      "mic": -68.6,
+      "clipping": false
+    },
+    {
+      "t": 4.0,
+      "cpu": 50.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2272,
+      "mic": -68.4,
+      "clipping": false
+    },
+    {
+      "t": 8.0,
+      "cpu": 50.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2255,
+      "mic": -68.12,
+      "clipping": false
+    },
+    {
+      "t": 12.0,
+      "cpu": 68.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2255,
+      "mic": -68.64,
+      "clipping": false
+    },
+    {
+      "t": 16.0,
+      "cpu": 51.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2255,
+      "mic": -68.26,
+      "clipping": false
+    },
+    {
+      "t": 20.0,
+      "cpu": 50.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2255,
+      "mic": -68.28,
+      "clipping": false
+    },
+    {
+      "t": 24.0,
+      "cpu": 92.0,
+      "gpu": 44.0,
+      "fan1": 2400,
+      "fan2": 2255,
+      "mic": -68.11,
+      "clipping": false
+    },
+    {
+      "t": 28.0,
+      "cpu": 92.0,
+      "gpu": 44.0,
+      "fan1": 2608,
+      "fan2": 2479,
+      "mic": -58.87,
+      "clipping": false
+    },
+    {
+      "t": 32.0,
+      "cpu": 82.0,
+      "gpu": 44.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.76,
+      "clipping": false
+    },
+    {
+      "t": 36.0,
+      "cpu": 72.0,
+      "gpu": 44.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.62,
+      "clipping": false
+    },
+    {
+      "t": 40.0,
+      "cpu": 92.0,
+      "gpu": 44.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.68,
+      "clipping": false
+    },
+    {
+      "t": 44.0,
+      "cpu": 86.0,
+      "gpu": 43.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.81,
+      "clipping": false
+    },
+    {
+      "t": 48.0,
+      "cpu": 71.0,
+      "gpu": 43.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.76,
+      "clipping": false
+    },
+    {
+      "t": 52.0,
+      "cpu": 72.0,
+      "gpu": 43.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.79,
+      "clipping": false
+    },
+    {
+      "t": 56.0,
+      "cpu": 50.0,
+      "gpu": 43.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.65,
+      "clipping": false
+    },
+    {
+      "t": 60.0,
+      "cpu": 51.0,
+      "gpu": 43.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.73,
+      "clipping": false
+    },
+    {
+      "t": 64.0,
+      "cpu": 49.0,
+      "gpu": 42.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.85,
+      "clipping": false
+    },
+    {
+      "t": 68.0,
+      "cpu": 48.0,
+      "gpu": 42.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.69,
+      "clipping": false
+    },
+    {
+      "t": 72.0,
+      "cpu": 51.0,
+      "gpu": 41.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.91,
+      "clipping": false
+    },
+    {
+      "t": 76.0,
+      "cpu": 47.0,
+      "gpu": 41.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.76,
+      "clipping": false
+    },
+    {
+      "t": 80.0,
+      "cpu": 46.0,
+      "gpu": 40.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.89,
+      "clipping": false
+    },
+    {
+      "t": 84.0,
+      "cpu": 47.0,
+      "gpu": 40.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.79,
+      "clipping": false
+    },
+    {
+      "t": 88.0,
+      "cpu": 46.0,
+      "gpu": 40.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.8,
+      "clipping": false
+    },
+    {
+      "t": 92.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.84,
+      "clipping": false
+    },
+    {
+      "t": 96.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.89,
+      "clipping": false
+    },
+    {
+      "t": 100.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.78,
+      "clipping": false
+    },
+    {
+      "t": 104.0,
+      "cpu": 45.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.74,
+      "clipping": false
+    },
+    {
+      "t": 108.0,
+      "cpu": 44.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.78,
+      "clipping": false
+    },
+    {
+      "t": 112.0,
+      "cpu": 44.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.83,
+      "clipping": false
+    },
+    {
+      "t": 116.0,
+      "cpu": 64.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.83,
+      "clipping": false
+    },
+    {
+      "t": 120.0,
+      "cpu": 92.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.65,
+      "clipping": false
+    },
+    {
+      "t": 124.0,
+      "cpu": 67.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.82,
+      "clipping": false
+    },
+    {
+      "t": 128.0,
+      "cpu": 63.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.69,
+      "clipping": false
+    },
+    {
+      "t": 132.0,
+      "cpu": 67.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.73,
+      "clipping": false
+    },
+    {
+      "t": 136.0,
+      "cpu": 61.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.73,
+      "clipping": false
+    },
+    {
+      "t": 140.0,
+      "cpu": 63.0,
+      "gpu": 40.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.71,
+      "clipping": false
+    },
+    {
+      "t": 144.0,
+      "cpu": 48.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.79,
+      "clipping": false
+    },
+    {
+      "t": 148.0,
+      "cpu": 46.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.76,
+      "clipping": false
+    },
+    {
+      "t": 152.0,
+      "cpu": 46.0,
+      "gpu": 39.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.82,
+      "clipping": false
+    },
+    {
+      "t": 156.0,
+      "cpu": 45.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.84,
+      "clipping": false
+    },
+    {
+      "t": 160.0,
+      "cpu": 44.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.83,
+      "clipping": false
+    },
+    {
+      "t": 164.0,
+      "cpu": 44.0,
+      "gpu": 38.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.79,
+      "clipping": false
+    },
+    {
+      "t": 168.0,
+      "cpu": 44.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.76,
+      "clipping": false
+    },
+    {
+      "t": 172.0,
+      "cpu": 43.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.7,
+      "clipping": false
+    },
+    {
+      "t": 176.0,
+      "cpu": 43.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.77,
+      "clipping": false
+    },
+    {
+      "t": 180.0,
+      "cpu": 43.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.73,
+      "clipping": false
+    },
+    {
+      "t": 184.0,
+      "cpu": 64.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.75,
+      "clipping": false
+    },
+    {
+      "t": 188.0,
+      "cpu": 43.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.78,
+      "clipping": false
+    },
+    {
+      "t": 192.0,
+      "cpu": 43.0,
+      "gpu": 36.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.8,
+      "clipping": false
+    },
+    {
+      "t": 196.0,
+      "cpu": 67.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.74,
+      "clipping": false
+    },
+    {
+      "t": 200.0,
+      "cpu": 42.0,
+      "gpu": 36.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.71,
+      "clipping": false
+    },
+    {
+      "t": 204.0,
+      "cpu": 58.0,
+      "gpu": 36.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -49.67,
+      "clipping": false
+    },
+    {
+      "t": 208.0,
+      "cpu": 65.0,
+      "gpu": 37.0,
+      "fan1": 6122,
+      "fan2": 6122,
+      "mic": -52.34,
+      "clipping": false
+    },
+    {
+      "t": 212.0,
+      "cpu": 92.0,
+      "gpu": 37.0,
+      "fan1": 2654,
+      "fan2": 2542,
+      "mic": -66.42,
+      "clipping": false
+    },
+    {
+      "t": 216.0,
+      "cpu": 92.0,
+      "gpu": 38.0,
+      "fan1": 2970,
+      "fan2": 2727,
+      "mic": -64.47,
+      "clipping": false
+    },
+    {
+      "t": 220.0,
+      "cpu": 92.0,
+      "gpu": 38.0,
+      "fan1": 3703,
+      "fan2": 3092,
+      "mic": -63.22,
+      "clipping": false
+    },
+    {
+      "t": 224.0,
+      "cpu": 80.0,
+      "gpu": 38.0,
+      "fan1": 3947,
+      "fan2": 3488,
+      "mic": -62.74,
+      "clipping": false
+    },
+    {
+      "t": 228.0,
+      "cpu": 92.0,
+      "gpu": 39.0,
+      "fan1": 4000,
+      "fan2": 3750,
+      "mic": -62.04,
+      "clipping": false
+    },
+    {
+      "t": 232.0,
+      "cpu": 67.0,
+      "gpu": 39.0,
+      "fan1": 4000,
+      "fan2": 3703,
+      "mic": -62.32,
+      "clipping": false
+    },
+    {
+      "t": 236.0,
+      "cpu": 46.0,
+      "gpu": 39.0,
+      "fan1": 3846,
+      "fan2": 3846,
+      "mic": -64.0,
+      "clipping": false
+    },
+    {
+      "t": 240.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 3571,
+      "fan2": 3488,
+      "mic": -65.18,
+      "clipping": false
+    },
+    {
+      "t": 244.0,
+      "cpu": 78.0,
+      "gpu": 39.0,
+      "fan1": 3157,
+      "fan2": 3030,
+      "mic": -65.0,
+      "clipping": false
+    },
+    {
+      "t": 248.0,
+      "cpu": 56.0,
+      "gpu": 40.0,
+      "fan1": 3529,
+      "fan2": 3260,
+      "mic": -63.23,
+      "clipping": false
+    },
+    {
+      "t": 252.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 4000,
+      "fan2": 3571,
+      "mic": -63.22,
+      "clipping": false
+    },
+    {
+      "t": 256.0,
+      "cpu": 46.0,
+      "gpu": 39.0,
+      "fan1": 3846,
+      "fan2": 3296,
+      "mic": -63.95,
+      "clipping": false
+    },
+    {
+      "t": 260.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 3529,
+      "fan2": 3157,
+      "mic": -65.59,
+      "clipping": false
+    },
+    {
+      "t": 264.0,
+      "cpu": 45.0,
+      "gpu": 39.0,
+      "fan1": 3225,
+      "fan2": 2857,
+      "mic": -66.39,
+      "clipping": false
+    },
+    {
+      "t": 268.0,
+      "cpu": 64.0,
+      "gpu": 39.0,
+      "fan1": 2941,
+      "fan2": 2702,
+      "mic": -65.72,
+      "clipping": false
+    },
+    {
+      "t": 272.0,
+      "cpu": 67.0,
+      "gpu": 40.0,
+      "fan1": 3488,
+      "fan2": 2970,
+      "mic": -64.41,
+      "clipping": false
+    }
+  ]
+}

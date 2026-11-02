@@ -1,0 +1,150 @@
+test_changed_identity_is_never_signalled (tests.test_process_shutdown.TestProcessIdentity.test_changed_identity_is_never_signalled) ... ok
+test_zombie_leader_with_live_threads_retains_ownership (tests.test_process_shutdown.TestProcessIdentity.test_zombie_leader_with_live_threads_retains_ownership) ... ok
+test_zombie_leader_does_not_hide_a_running_native_thread (tests.test_process_shutdown.TestThreadedShutdown.test_zombie_leader_does_not_hide_a_running_native_thread) ... ok
+test_atomic_private_save_and_symlink_read_rejection (tests.test_suspend_resume.TestPrivateCheckpoints.test_atomic_private_save_and_symlink_read_rejection) ... ok
+test_lock_rejects_concurrent_process (tests.test_suspend_resume.TestPrivateCheckpoints.test_lock_rejects_concurrent_process) ... ok
+test_world_readable_checkpoint_is_rejected (tests.test_suspend_resume.TestPrivateCheckpoints.test_world_readable_checkpoint_is_rejected) ... ok
+test_active_cycle_passes_only_after_handoff_resume_and_cleanup (tests.test_suspend_resume.TestSuspendValidation.test_active_cycle_passes_only_after_handoff_resume_and_cleanup) ... ok
+test_cancel_retries_handoff_after_failed_service_stop (tests.test_suspend_resume.TestSuspendValidation.test_cancel_retries_handoff_after_failed_service_stop) ... ok
+test_cancel_without_checkpoint_clears_stale_intent_after_verified_release (tests.test_suspend_resume.TestSuspendValidation.test_cancel_without_checkpoint_clears_stale_intent_after_verified_release) ... ok
+test_cancel_without_sleep_restores_safe_stopped_state (tests.test_suspend_resume.TestSuspendValidation.test_cancel_without_sleep_restores_safe_stopped_state) ... ok
+test_divergent_registers_after_wake_fail (tests.test_suspend_resume.TestSuspendValidation.test_divergent_registers_after_wake_fail) ... ok
+test_failed_cleanup_preserves_checkpoint_and_safety_timer (tests.test_suspend_resume.TestSuspendValidation.test_failed_cleanup_preserves_checkpoint_and_safety_timer) ... ok
+test_failed_manual_command_cleans_up_started_service (tests.test_suspend_resume.TestSuspendValidation.test_failed_manual_command_cleans_up_started_service) ... ok
+test_failed_recovery_during_cancel_keeps_checkpoint_and_timer (tests.test_suspend_resume.TestSuspendValidation.test_failed_recovery_during_cancel_keeps_checkpoint_and_timer) ... ok
+test_failed_timer_never_starts_service (tests.test_suspend_resume.TestSuspendValidation.test_failed_timer_never_starts_service) ... ok
+test_hook_logs_and_stale_target_timestamp_do_not_prove_sleep (tests.test_suspend_resume.TestSuspendValidation.test_hook_logs_and_stale_target_timestamp_do_not_prove_sleep) ... ok
+test_ignored_manual_command_cannot_pass_preparation (tests.test_suspend_resume.TestSuspendValidation.test_ignored_manual_command_cannot_pass_preparation) ... ok
+test_journal_from_another_boot_is_rejected (tests.test_suspend_resume.TestSuspendValidation.test_journal_from_another_boot_is_rejected) ... ok
+test_manual_mode_after_wake_fails (tests.test_suspend_resume.TestSuspendValidation.test_manual_mode_after_wake_fails) ... ok
+test_missing_fan_after_wake_fails (tests.test_suspend_resume.TestSuspendValidation.test_missing_fan_after_wake_fails) ... ok
+test_no_pre_sleep_evidence_cannot_pass (tests.test_suspend_resume.TestSuspendValidation.test_no_pre_sleep_evidence_cannot_pass) ... ok
+test_no_sleep_is_inconclusive_and_preserves_timer_and_checkpoint (tests.test_suspend_resume.TestSuspendValidation.test_no_sleep_is_inconclusive_and_preserves_timer_and_checkpoint) ... ok
+test_observer_requires_active_restart_marker (tests.test_suspend_resume.TestSuspendValidation.test_observer_requires_active_restart_marker) ... ok
+test_observer_requires_service_stopped_and_write_protection (tests.test_suspend_resume.TestSuspendValidation.test_observer_requires_service_stopped_and_write_protection) ... ok
+test_old_resume_journal_is_rejected_even_with_clock_gap (tests.test_suspend_resume.TestSuspendValidation.test_old_resume_journal_is_rejected_even_with_clock_gap) ... ok
+test_pid_reuse_with_fresh_systemd_invocation_is_accepted (tests.test_suspend_resume.TestSuspendValidation.test_pid_reuse_with_fresh_systemd_invocation_is_accepted) ... ok
+test_prepare_only_arms_test_without_suspending (tests.test_suspend_resume.TestSuspendValidation.test_prepare_only_arms_test_without_suspending) ... ok
+test_prepare_rejects_previous_checkpoint (tests.test_suspend_resume.TestSuspendValidation.test_prepare_rejects_previous_checkpoint) ... ok
+test_prepare_rejects_running_service_before_mutation (tests.test_suspend_resume.TestSuspendValidation.test_prepare_rejects_running_service_before_mutation) ... ok
+test_proc_and_journal_boot_uuid_formats_match (tests.test_suspend_resume.TestSuspendValidation.test_proc_and_journal_boot_uuid_formats_match) ... ok
+test_reboot_is_not_suspend_resume (tests.test_suspend_resume.TestSuspendValidation.test_reboot_is_not_suspend_resume) ... ok
+test_same_invocation_after_wake_fails_and_stops_service (tests.test_suspend_resume.TestSuspendValidation.test_same_invocation_after_wake_fails_and_stops_service) ... ok
+test_stopped_cycle_never_starts_service (tests.test_suspend_resume.TestSuspendValidation.test_stopped_cycle_never_starts_service) ... ok
+test_suspend_command_releases_lock_for_pre_sleep_observer (tests.test_suspend_resume.TestSuspendValidation.test_suspend_command_releases_lock_for_pre_sleep_observer) ... ok
+test_unexpected_start_in_stopped_cycle_is_stopped_during_cleanup (tests.test_suspend_resume.TestSuspendValidation.test_unexpected_start_in_stopped_cycle_is_stopped_during_cleanup) ... ok
+test_crash_only_sets_reduced_stop_timer (tests.test_service_lifecycle.TestBoundedValidation.test_crash_only_sets_reduced_stop_timer) ... Checking maximum speed for 10 seconds before crash test
+Checking daemon crash recovery at maximum speed (PID 1000)
+ok
+test_get_main_pid_handles_valid_and_missing_output (tests.test_service_lifecycle.TestBoundedValidation.test_get_main_pid_handles_valid_and_missing_output) ... ok
+test_mode_failure_still_stops_service_and_verifies_protection (tests.test_service_lifecycle.TestBoundedValidation.test_mode_failure_still_stops_service_and_verifies_protection) ... Checking manual-25 for 10 seconds
+ok
+test_sensor_loss_and_thermal_emergency_abort (tests.test_service_lifecycle.TestBoundedValidation.test_sensor_loss_and_thermal_emergency_abort) ... ok
+test_stopped_fan_aborts_after_spinup_grace (tests.test_service_lifecycle.TestBoundedValidation.test_stopped_fan_aborts_after_spinup_grace) ... ok
+test_wait_crash_recovery_rejects_divergent_registers (tests.test_service_lifecycle.TestBoundedValidation.test_wait_crash_recovery_rejects_divergent_registers) ... ok
+test_wait_crash_recovery_rejects_failed_or_unhealthy_auto (tests.test_service_lifecycle.TestBoundedValidation.test_wait_crash_recovery_rejects_failed_or_unhealthy_auto) ... ok
+test_wait_crash_recovery_rejects_identical_pid (tests.test_service_lifecycle.TestBoundedValidation.test_wait_crash_recovery_rejects_identical_pid) ... ok
+test_wait_crash_recovery_rejects_non_auto_mode (tests.test_service_lifecycle.TestBoundedValidation.test_wait_crash_recovery_rejects_non_auto_mode) ... ok
+test_wait_crash_recovery_succeeds_with_fresh_pid_and_baseline (tests.test_service_lifecycle.TestBoundedValidation.test_wait_crash_recovery_succeeds_with_fresh_pid_and_baseline) ... ok
+test_failed_recovery_never_unloads_ec_driver (tests.test_service_lifecycle.TestServiceLifecycle.test_failed_recovery_never_unloads_ec_driver) ... ok
+test_failed_resume_keeps_restart_intent (tests.test_service_lifecycle.TestServiceLifecycle.test_failed_resume_keeps_restart_intent) ... ok
+test_failed_stop_preserves_sleep_marker_for_retry (tests.test_service_lifecycle.TestServiceLifecycle.test_failed_stop_preserves_sleep_marker_for_retry) ... ok
+test_inactive_service_is_not_started_after_resume (tests.test_service_lifecycle.TestServiceLifecycle.test_inactive_service_is_not_started_after_resume) ... ok
+test_live_native_writer_prevents_driver_unload (tests.test_service_lifecycle.TestServiceLifecycle.test_live_native_writer_prevents_driver_unload) ... ok
+test_failed_restoration_keeps_durable_recovery_record (tests.test_nbfc_backend_review.TestGuardedBackendReview.test_failed_restoration_keeps_durable_recovery_record) ... ok
+test_guardian_trigger_readings_reach_client_status (tests.test_nbfc_backend_review.TestGuardedBackendReview.test_guardian_trigger_readings_reach_client_status) ... ok
+test_missing_build_manifest_fails_before_ec_open (tests.test_nbfc_backend_review.TestGuardedBackendReview.test_missing_build_manifest_fails_before_ec_open) ... ok
+test_missing_native_binary_cannot_fall_back_to_python_control (tests.test_nbfc_backend_review.TestGuardedBackendReview.test_missing_native_binary_cannot_fall_back_to_python_control) ... ok
+test_partial_and_empty_target_maps_are_rejected_before_ipc (tests.test_nbfc_backend_review.TestGuardedBackendReview.test_partial_and_empty_target_maps_are_rejected_before_ipc) ... ok
+test_rpm_communication_failure_never_returns_cached_success (tests.test_nbfc_backend_review.TestGuardedBackendReview.test_rpm_communication_failure_never_returns_cached_success) ... ok
+test_close_during_emergency_reaps_native_and_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_close_during_emergency_reaps_native_and_restores_baseline) ... 2026-11-01 22:39:32,331 [WARNING] nitrofan.nbfc_guardian: Guardian emergency cooling triggered at 90.0; sampled temperatures: {'cpu': 92.0, 'gpu': None}
+2026-11-01 22:39:32,390 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-01 22:39:32,390 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_cpu_sensor_loss_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_cpu_sensor_loss_restores_baseline) ... 2026-11-01 22:39:35,700 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-01 22:39:35,700 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_forced_native_and_guardian_death_then_fresh_manual_control (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_forced_native_and_guardian_death_then_fresh_manual_control)
+Exercise whole-service SIGKILL artifacts across two guardian lifetimes. ... 2026-11-01 22:39:36,418 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-01 22:39:36,418 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_guarded_native_cannot_detach_from_guardian (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_guarded_native_cannot_detach_from_guardian) ... ok
+test_guardian_sigkill_and_external_recover (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_guardian_sigkill_and_external_recover) ... ok
+test_native_child_death_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_native_child_death_restores_baseline) ... 2026-11-01 22:39:38,048 [ERROR] nitrofan.nbfc_guardian: NBFC child process died unexpectedly (code=-9); restoring firmware Auto
+2026-11-01 22:39:38,049 [ERROR] nitrofan.nbfc_guardian: Native NBFC log tail: ervice: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAE4)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: re_init_required = 1;
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+DEBUG: nbfc_service: WriteByte(0x22, 0x4)
+DEBUG: nbfc_service: WriteByte(0x21, 0x10)
+DEBUG: nbfc_service: WriteByte(0x10, 0x1)
+DEBUG: nbfc_service: WriteWord(0x37, 0x64)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x64)
+INFO: nbfc_service: NBFC-Linux comes with no warranty. Run `nbfc warranty` for details.
+INFO: nbfc_service: NBFC-Linux needs your support. Run `nbfc support` for details.
+INFO: nbfc_service: Running version 0.5.4
+INFO: nbfc_service: SYSCONFDIR is "/home/luke/nbfc-evaluation/backend-restart-runtime/etc"
+INFO: nbfc_service: DATADIR is "/home/luke/nbfc-evaluation/backend-restart-runtime/share"
+INFO: nbfc_service: RUNSTATEDIR is "/home/luke/nbfc-evaluation/backend-restart-runtime/run"
+INFO: nbfc_service: Available Embedded Controllers: ec_sys
+INFO: nbfc_service: Using "/home/luke/nbfc-evaluation/backend-stop-check/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json" as model config
+WARNING: nbfc_service: /home/luke/nbfc-evaluation/backend-stop-check/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json: FanConfigurations[0]: No threshold with FanSpeed == 0 found
+WARNING: nbfc_service: /home/luke/nbfc-evaluation/backend-stop-check/tools/ec_guard/profiles/Acer_Nitro_AN515-54_guarded_control.json: FanConfigurations[1]: No threshold with FanSpeed == 0 found
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp1_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp2_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp3_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp4_input)
+INFO: nbfc_service: Available temperature source: "coretemp" (/sys/class/hwmon/hwmon1/temp5_input)
+INFO: nbfc_service: Available temperature source: "nvme" (/sys/class/hwmon/hwmon2/temp1_input)
+INFO: nbfc_service: Available temperature source: "pch_cannonlake" (/sys/class/hwmon/hwmon3/temp1_input)
+INFO: nbfc_service: Available temperature source: "iwlwifi_1" (/sys/class/hwmon/hwmon4/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp1_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp2_input)
+INFO: nbfc_service: Available temperature source: "acer" (/sys/class/hwmon/hwmon5/temp3_input)
+INFO: nbfc_service: Available temperature source: "nvidia-ml" (none)
+INFO: nbfc_service: Using "ec_sys" as EmbeddedControllerType
+DEBUG: nbfc_service: WriteByte(0x22, 0xC)
+DEBUG: nbfc_service: WriteByte(0x21, 0x30)
+DEBUG: nbfc_service: WriteByte(0x10, 0x0)
+INFO: nbfc_service: Fan #0 (Fan 1) uses "anonymous" (/home/luke/nbfc-evaluation/backend-restart-runtime/sys/class/hwmon/hwmon0/temp1_input) as temperature source (Max)
+INFO: nbfc_service: Fan #1 (Fan 2) uses "anonymous" (/home/luke/nbfc-evaluation/backend-restart-runtime/sys/class/hwmon/hwmon0/temp1_input) as temperature source (Max)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAE4)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: WriteWord(0x37, 0x32)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x32)
+DEBUG: nbfc_service: ReadWord(0x13, out = 0xAE4)
+DEBUG: nbfc_service: ReadWord(0x15, out = 0x990)
+DEBUG: nbfc_service: WriteWord(0x37, 0x32)
+DEBUG: nbfc_service: WriteWord(0x3A, 0x32)
+DEBUG: nbfc_service: Server_Loop(timeout=3000): num clients: 0
+
+2026-11-01 22:39:38,102 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-01 22:39:38,102 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_overtemp_emergency_and_hysteresis (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_overtemp_emergency_and_hysteresis) ... 2026-11-01 22:39:39,343 [WARNING] nitrofan.nbfc_guardian: Guardian emergency cooling triggered at 90.0; sampled temperatures: {'cpu': 92.0, 'gpu': None}
+2026-11-01 22:39:41,415 [INFO] nitrofan.nbfc_guardian: Guardian detected cool temperatures (<= 80.0C); clearing emergency
+2026-11-01 22:39:41,702 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-01 22:39:41,702 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_parent_pipe_eof_restores_baseline (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_parent_pipe_eof_restores_baseline) ... ok
+test_speeds_reach_ec_lowbytes_and_equal_modes (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_speeds_reach_ec_lowbytes_and_equal_modes) ... 2026-11-01 22:39:43,616 [INFO] nitrofan.nbfc_guardian: Parent EOF detected on pipe; restoring firmware baseline and exiting.
+2026-11-01 22:39:43,616 [INFO] nitrofan.nbfc_guardian: Guardian cleaning up...
+ok
+test_stale_state_does_not_restore_manual (tests.test_nbfc_native_backend.TestNBFCNativeBackend.test_stale_state_does_not_restore_manual) ... ok
+
+----------------------------------------------------------------------
+Ran 66 tests in 15.916s
+
+OK

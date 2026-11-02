@@ -1,0 +1,15 @@
+[Unit]
+Description=Release NitroFan control during sleep
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /opt/nitrofan/tools/service_hardware.py sleep
+ExecStop=/usr/bin/python3 /opt/nitrofan/tools/service_hardware.py wake
+TimeoutStartSec=45
+TimeoutStopSec=45
+
+[Install]
+RequiredBy=sleep.target

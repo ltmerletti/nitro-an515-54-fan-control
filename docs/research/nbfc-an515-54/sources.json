@@ -1,0 +1,32 @@
+{
+  "repository": "https://github.com/nbfc-linux/nbfc-linux",
+  "commit": "2b8e31bf95b7f0c2e0d80adb6fd598be6edb8fc8",
+  "files": [
+    {
+      "source_path": "share/nbfc/configs/Acer Nitro AN515-54.json",
+      "url": "https://raw.githubusercontent.com/nbfc-linux/nbfc-linux/2b8e31bf95b7f0c2e0d80adb6fd598be6edb8fc8/share/nbfc/configs/Acer%20Nitro%20AN515-54.json",
+      "local_file": "profile.json",
+      "sha256": "b04e2edc839169f7342dbbe8114f8ca66dee03dbd02d5685380b448d3161a568"
+    },
+    {
+      "source_path": "src/fan.c",
+      "url": "https://raw.githubusercontent.com/nbfc-linux/nbfc-linux/2b8e31bf95b7f0c2e0d80adb6fd598be6edb8fc8/src/fan.c",
+      "local_file": "fan.c.txt",
+      "sha256": "f58258b3d33e444091aa691949a3ec344df4dc3980684dd6bfa14bdeae64ceec"
+    },
+    {
+      "source_path": "src/register_write_configuration_utils.c",
+      "url": "https://raw.githubusercontent.com/nbfc-linux/nbfc-linux/2b8e31bf95b7f0c2e0d80adb6fd598be6edb8fc8/src/register_write_configuration_utils.c",
+      "local_file": "register_write_configuration_utils.c.txt",
+      "sha256": "99aafaaf23205798b76bcd7b3bed0eb97689a47e1a23f1e5c4773300fcc00d4a"
+    },
+    {
+      "source_path": "src/ec.c",
+      "url": "https://raw.githubusercontent.com/nbfc-linux/nbfc-linux/2b8e31bf95b7f0c2e0d80adb6fd598be6edb8fc8/src/ec.c",
+      "local_file": "ec.c.txt",
+      "sha256": "e0bf7411f00d4ebf97ea1e9bf23d71aeacac3e5c226f247d1ce103a7b3eb3e4c"
+    }
+  ],
+  "profile_add_commit": "e00cd6398c902212952174c4dd4a07469e3f8d24",
+  "profile_add_commit_message": "Add configuration for Acer Nitro AN515-54; author reports tested with Nitro AN515-54. BIOS revision not specified."
+}

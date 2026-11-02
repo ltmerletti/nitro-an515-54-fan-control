@@ -1,0 +1,61 @@
+{
+  "checked_utc": "2026-11-01T19:08:55.711562+00:00",
+  "manifest": {
+    "build_timestamp": "2026-11-01T19:07:59Z",
+    "upstream_commit": "9da010d6a2e8351bdf6900d6c3643f1e742af936",
+    "patch_sha256": "db673f2123b03b65b709d197fc83fa50c21b801845443565e040f65e9a624235",
+    "ec_guard_c_sha256": "db43d1ee7c3c412112c574b5f037ecc0542c9d763ac251e78679d47eff757ba4",
+    "ec_guard_h_sha256": "441681355e1471de1b928dd5dbdd54b42c6930ea5abdb9ba696490d9c1083c78",
+    "service_binary_sha256": "f6a8c87f095a3223f19ed2d5a7480650b7145580470b718f5a141cd3f7d49dd2",
+    "shared_library_sha256": "fdf0cbf2f59b337ffb653eebec59967c180ab45e5cb7a9cc3cbb1e6d5859cc26",
+    "service_binary_path": "/home/luke/nbfc-evaluation/reviewed-runtime/bin/nbfc_service",
+    "shared_library_path": "/home/luke/nbfc-evaluation/reviewed-runtime/bin/libnbfc_ec_guard.so",
+    "runtime_root": "/home/luke/nbfc-evaluation/reviewed-runtime",
+    "policy_sha256": "38079865abc2f87a3bd5183f4cf584cd6a4b851e9c59428c05ecf21307f19162",
+    "profile_sha256": "0b6a62755703d1177841b6c7b7488568a28ea200a6e626b0ae34c0550efeeb40",
+    "compile_flags": {
+      "cflags": [
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "-std=c99",
+        "-fPIC",
+        "-O2",
+        "-DNDEBUG"
+      ],
+      "cppflags": [
+        "-DSYSCONFDIR=\"/home/luke/nbfc-evaluation/reviewed-runtime/etc\"",
+        "-DDATADIR=\"/home/luke/nbfc-evaluation/reviewed-runtime/share\"",
+        "-DLIBDIR=\"/home/luke/nbfc-evaluation/reviewed-runtime/lib\"",
+        "-DRUNSTATEDIR=\"/home/luke/nbfc-evaluation/reviewed-runtime/run\"",
+        "-DNBFC_MUTABLE_DIR=\"/home/luke/nbfc-evaluation/reviewed-runtime/var/lib/nbfc\"",
+        "-DVERSION=\"0.5.4\"",
+        "-I/home/luke/nbfc-evaluation/dependencies/usr/include/lua5.4",
+        "-Isrc",
+        "-I/home/luke/nbfc-evaluation/dependencies/usr/include/x86_64-linux-gnu"
+      ],
+      "ldflags": [
+        "-L/home/luke/nbfc-evaluation/dependencies/usr/lib/x86_64-linux-gnu",
+        "-llua5.4",
+        "-lm",
+        "-ldl",
+        "-Wl,-rpath,/home/luke/nbfc-evaluation/dependencies/usr/lib/x86_64-linux-gnu"
+      ]
+    }
+  },
+  "linux_fake_ec_integration_log": "test_baseline_mismatch_performs_no_writes (tests.test_nbfc_upstream_integration.TestPatchedUpstream.test_baseline_mismatch_performs_no_writes) ... ok\ntest_bounded_maximum_restores_baseline_and_stale_state (tests.test_nbfc_upstream_integration.TestPatchedUpstream.test_bounded_maximum_restores_baseline_and_stale_state) ... ok\ntest_child_sigkill_restores_baseline_and_fails (tests.test_nbfc_upstream_integration.TestPatchedUpstream.test_child_sigkill_restores_baseline_and_fails) ... ok\ntest_sensor_loss_restores_baseline_and_fails (tests.test_nbfc_upstream_integration.TestPatchedUpstream.test_sensor_loss_restores_baseline_and_fails) ... ok\ntest_supervisor_sigterm_restores_baseline (tests.test_nbfc_upstream_integration.TestPatchedUpstream.test_supervisor_sigterm_restores_baseline) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 11.134s\n\nOK\n",
+  "ec_write_support": "N",
+  "nbfc_process_check": 1,
+  "real_hardware_control_verified": false,
+  "baseline_capture": {
+    "path": "/home/luke/nitrofan-observations/acer-auto-20261101T184304Z-98cgowwp/readings.csv",
+    "samples": 776,
+    "last_elapsed_s": "1550.000"
+  },
+  "local_verification": {
+    "python_tests_run": 344,
+    "passed": 339,
+    "linux_opt_in_skipped": 5,
+    "c_test_groups_passed": 7
+  }
+}

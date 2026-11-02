@@ -1,0 +1,89 @@
+{
+  "source": "docs/data/nbfc/read-only-2026-11-01.log",
+  "sha256": "3c2c502cb7ed730119a599d52c2d4182db5a8bfb97db1e9805d11307f6aea257",
+  "version": "0.5.4",
+  "read_only_trial": "passed",
+  "dummy_duration_s": 3,
+  "real_duration_s": 45,
+  "read_registers": {
+    "0x13": {
+      "samples": 16,
+      "first_rpm": 2884,
+      "last_rpm": 4000
+    },
+    "0x15": {
+      "samples": 16,
+      "first_rpm": 2727,
+      "last_rpm": 2400
+    }
+  },
+  "native_status_snapshots": [
+    {
+      "PID": 56938,
+      "SelectedConfigId": "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json",
+      "ReadOnly": true,
+      "Fans": [
+        {
+          "Name": "CPU fan",
+          "Temperature": 44.900002,
+          "CriticalTemperature": 90.0,
+          "AutoMode": true,
+          "Critical": false,
+          "CurrentSpeed": 44.544266,
+          "TargetSpeed": 0.0,
+          "RequestedSpeed": 0.0,
+          "SpeedSteps": 6122
+        },
+        {
+          "Name": "GPU fan",
+          "Temperature": 44.900002,
+          "CriticalTemperature": 90.0,
+          "AutoMode": true,
+          "Critical": false,
+          "CurrentSpeed": 43.351849,
+          "TargetSpeed": 0.0,
+          "RequestedSpeed": 0.0,
+          "SpeedSteps": 6122
+        }
+      ]
+    },
+    {
+      "PID": 56938,
+      "SelectedConfigId": "/home/luke/nbfc-evaluation/package/usr/share/nbfc/configs/Acer Nitro AN515-54.json",
+      "ReadOnly": true,
+      "Fans": [
+        {
+          "Name": "CPU fan",
+          "Temperature": 44.0,
+          "CriticalTemperature": 90.0,
+          "AutoMode": true,
+          "Critical": false,
+          "CurrentSpeed": 39.202873,
+          "TargetSpeed": 0.0,
+          "RequestedSpeed": 0.0,
+          "SpeedSteps": 6122
+        },
+        {
+          "Name": "GPU fan",
+          "Temperature": 44.0,
+          "CriticalTemperature": 90.0,
+          "AutoMode": true,
+          "Critical": false,
+          "CurrentSpeed": 37.112053,
+          "TargetSpeed": 0.0,
+          "RequestedSpeed": 0.0,
+          "SpeedSteps": 6122
+        }
+      ]
+    }
+  ],
+  "write_calls_in_debug_log": 0,
+  "write_support_after": "N",
+  "active_processes_after": 0,
+  "control_verified": false,
+  "issues_before_control": [
+    "Both fans use average of coretemp CPU sources by default.",
+    "Stock curve can request zero percent.",
+    "CurrentSpeed is normalized against assumed 6122 RPM, not measured PWM percent."
+  ]
+}

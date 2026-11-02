@@ -1,0 +1,142 @@
+Get:1 https://pkgs.tailscale.com/stable/ubuntu resolute InRelease
+Hit:2 http://security.ubuntu.com/ubuntu resolute-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu resolute InRelease
+Hit:4 https://download.docker.com/linux/ubuntu resolute InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu resolute-updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu resolute-backports InRelease
+Fetched 6,652 B in 1s (10.3 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+gcc is already the newest version (4:15.2.0-5ubuntu1).
+gcc set to manually installed.
+git is already the newest version (1:2.53.0-1ubuntu1.1).
+patch is already the newest version (2.8-2build1).
+patch set to manually installed.
+python3 is already the newest version (3.14.3-0ubuntu2).
+python3 set to manually installed.
+procps is already the newest version (2:4.0.4-9ubuntu1).
+procps set to manually installed.
+Solving dependencies...
+The following packages were automatically installed and are no longer required:
+  grub-pc-bin linux-headers-7.0.0-31 linux-headers-7.0.0-31-generic
+  linux-image-7.0.0-31-generic linux-main-modules-zfs-7.0.0-31-generic
+  linux-modules-7.0.0-31-generic linux-tools-7.0.0-31
+  linux-tools-7.0.0-31-generic nvidia-firmware-595-595.84 pollinate
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  autoconf automake autotools-dev libltdl-dev libltdl7 liblua5.4-0
+  libncurses-dev libreadline-dev libtool libtool-bin m4
+Suggested packages:
+  autoconf-archive gnu-standards autoconf-doc gettext libtool-doc ncurses-doc
+  readline-doc gfortran | fortran95-compiler m4-doc
+The following NEW packages will be installed:
+  autoconf automake autotools-dev libltdl-dev libltdl7 liblua5.4-0
+  liblua5.4-dev libncurses-dev libreadline-dev libtool libtool-bin m4
+0 upgraded, 12 newly installed, 0 to remove and 2 not upgraded.
+Need to get 2,624 kB of archives.
+After this operation, 12.0 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu resolute/main amd64 m4 amd64 1.4.21-1 [219 kB]
+Get:2 http://archive.ubuntu.com/ubuntu resolute/main amd64 autoconf all 2.72-3.1ubuntu2 [384 kB]
+Get:3 http://archive.ubuntu.com/ubuntu resolute/main amd64 autotools-dev all 20240727.1build1 [43.4 kB]
+Get:4 http://archive.ubuntu.com/ubuntu resolute/main amd64 automake all 1:1.18.1-3build1 [582 kB]
+Get:5 http://archive.ubuntu.com/ubuntu resolute/main amd64 libltdl7 amd64 2.5.4-9 [43.7 kB]
+Get:6 http://archive.ubuntu.com/ubuntu resolute/main amd64 libltdl-dev amd64 2.5.4-9 [173 kB]
+Get:7 http://archive.ubuntu.com/ubuntu resolute/main amd64 liblua5.4-0 amd64 5.4.8-1build1 [163 kB]
+Get:8 http://archive.ubuntu.com/ubuntu resolute/main amd64 libncurses-dev amd64 6.6+20251231-1 [389 kB]
+Get:9 http://archive.ubuntu.com/ubuntu resolute/main amd64 libreadline-dev amd64 8.3-4 [180 kB]
+Get:10 http://archive.ubuntu.com/ubuntu resolute/main amd64 liblua5.4-dev amd64 5.4.8-1build1 [192 kB]
+Get:11 http://archive.ubuntu.com/ubuntu resolute/main amd64 libtool all 2.5.4-9 [169 kB]
+Get:12 http://archive.ubuntu.com/ubuntu resolute/main amd64 libtool-bin amd64 2.5.4-9 [85.9 kB]
+Fetched 2,624 kB in 2s (1,629 kB/s)
+Selecting previously unselected package m4.
+(Reading database… (Reading database… 5%(Reading database… 10%(Reading database… 15%(Reading database… 20%(Reading database… 25%(Reading database… 30%(Reading database… 35%(Reading database… 40%(Reading database… 45%(Reading database… 50%(Reading database… 55%(Reading database… 60%(Reading database… 65%(Reading database… 70%(Reading database… 75%(Reading database… 80%(Reading database… 85%(Reading database… 90%(Reading database… 95%(Reading database… 100%(Reading database… 221741 files and directories currently installed.)
+Preparing to unpack …/00-m4_1.4.21-1_amd64.deb…
+Unpacking m4 (1.4.21-1)…
+Selecting previously unselected package autoconf.
+Preparing to unpack …/01-autoconf_2.72-3.1ubuntu2_all.deb…
+Unpacking autoconf (2.72-3.1ubuntu2)…
+Selecting previously unselected package autotools-dev.
+Preparing to unpack …/02-autotools-dev_20240727.1build1_all.deb…
+Unpacking autotools-dev (20240727.1build1)…
+Selecting previously unselected package automake.
+Preparing to unpack …/03-automake_1%3a1.18.1-3build1_all.deb…
+Unpacking automake (1:1.18.1-3build1)…
+Selecting previously unselected package libltdl7:amd64.
+Preparing to unpack …/04-libltdl7_2.5.4-9_amd64.deb…
+Unpacking libltdl7:amd64 (2.5.4-9)…
+Selecting previously unselected package libltdl-dev:amd64.
+Preparing to unpack …/05-libltdl-dev_2.5.4-9_amd64.deb…
+Unpacking libltdl-dev:amd64 (2.5.4-9)…
+Selecting previously unselected package liblua5.4-0:amd64.
+Preparing to unpack …/06-liblua5.4-0_5.4.8-1build1_amd64.deb…
+Unpacking liblua5.4-0:amd64 (5.4.8-1build1)…
+Selecting previously unselected package libncurses-dev:amd64.
+Preparing to unpack …/07-libncurses-dev_6.6+20251231-1_amd64.deb…
+Unpacking libncurses-dev:amd64 (6.6+20251231-1)…
+Selecting previously unselected package libreadline-dev:amd64.
+Preparing to unpack …/08-libreadline-dev_8.3-4_amd64.deb…
+Unpacking libreadline-dev:amd64 (8.3-4)…
+Selecting previously unselected package liblua5.4-dev:amd64.
+Preparing to unpack …/09-liblua5.4-dev_5.4.8-1build1_amd64.deb…
+Unpacking liblua5.4-dev:amd64 (5.4.8-1build1)…
+Selecting previously unselected package libtool.
+Preparing to unpack …/10-libtool_2.5.4-9_all.deb…
+Unpacking libtool (2.5.4-9)…
+Selecting previously unselected package libtool-bin.
+Preparing to unpack …/11-libtool-bin_2.5.4-9_amd64.deb…
+Unpacking libtool-bin (2.5.4-9)…
+Setting up libncurses-dev:amd64 (6.6+20251231-1)…
+Setting up m4 (1.4.21-1)…
+Setting up libreadline-dev:amd64 (8.3-4)…
+Setting up autotools-dev (20240727.1build1)…
+Setting up libltdl7:amd64 (2.5.4-9)…
+Setting up autoconf (2.72-3.1ubuntu2)…
+Setting up liblua5.4-0:amd64 (5.4.8-1build1)…
+Setting up automake (1:1.18.1-3build1)…
+update-alternatives: using /usr/bin/automake-1.18 to provide /usr/bin/automake (automake) in auto mode
+Setting up libtool (2.5.4-9)…
+Setting up liblua5.4-dev:amd64 (5.4.8-1build1)…
+update-alternatives: using /usr/lib/x86_64-linux-gnu/pkgconfig/lua5.4.pc to provide /usr/lib/x86_64-linux-gnu/pkgconfig/lua.pc (lua-pkgconfig-x86_64-linux-gnu) in auto mode
+Setting up libltdl-dev:amd64 (2.5.4-9)…
+Setting up libtool-bin (2.5.4-9)…
+Processing triggers for man-db (2.13.1-1build1)…
+Processing triggers for install-info (7.2-5ubuntu2)…
+Processing triggers for libc-bin (2.43-2ubuntu2.4)…
+
+Running kernel seems to be up-to-date.
+
+The processor microcode seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Cloning into '/tmp/nitrofan-install-btxpb7yw/upstream'...
+done.
+HEAD is now at 9da010d Updated PKGBUILD
+Guarded NBFC built successfully.
+Service SHA256: 4cd5dfdef6f2d53bf5c0109e399b0202bf0fd22ef6af1bb18037b7ea34f7c1da
+uid=1000(luke) gid=1000(luke) groups=1000(luke),4(adm),24(cdrom),27(sudo),29(audio),30(dip),46(plugdev),100(users),101(lxd),983(docker),982(ollama)
+/usr/lib/systemd/system/xfs_scrub_all.service:26: Support for option CPUAccounting= has been removed and it is ignored
+/usr/lib/systemd/system/system-xfs_scrub.slice:15: Support for option CPUAccounting= has been removed and it is ignored
+{"event": "begin", "timestamp": 1793568502.3559098, "baseline": {"0x03": 33, "0x10": 0, "0x21": 0, "0x22": 0, "0x37": 0, "0x38": 0, "0x3a": 0, "0x3b": 0}, "seconds_per_stage": 20}
+Checking manual-25 for 20 seconds
+{"event": "sample", "timestamp": 1793568502.3898256, "stage": "manual-25", "elapsed_s": 0.0, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 67.0, "gpu": 45.0, "acer_temp1": 65.0, "acer_temp2": 45.0, "acer_temp3": 51.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3409}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3000}}, "last_error": null, "uptime": 0.1, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 0, "0x22": 0, "0x37": 0, "0x38": 0, "0x3a": 0, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568503.4302254, "stage": "manual-25", "elapsed_s": 1.02, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 67.0, "gpu": 45.0, "acer_temp1": 65.0, "acer_temp2": 45.0, "acer_temp3": 51.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3488}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3000}}, "last_error": null, "uptime": 1.11, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568504.5089235, "stage": "manual-25", "elapsed_s": 2.06, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 54.0, "gpu": 45.0, "acer_temp1": 55.0, "acer_temp2": 45.0, "acer_temp3": 53.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3409}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3030}}, "last_error": null, "uptime": 2.16, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568505.5843694, "stage": "manual-25", "elapsed_s": 3.14, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 54.0, "gpu": 45.0, "acer_temp1": 55.0, "acer_temp2": 45.0, "acer_temp3": 53.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3409}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3157}}, "last_error": null, "uptime": 3.23, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568506.6661983, "stage": "manual-25", "elapsed_s": 4.21, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 51.0, "gpu": 45.0, "acer_temp1": 51.0, "acer_temp2": 45.0, "acer_temp3": 52.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3409}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3296}}, "last_error": null, "uptime": 4.31, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568507.742225, "stage": "manual-25", "elapsed_s": 5.29, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 51.0, "gpu": 45.0, "acer_temp1": 51.0, "acer_temp2": 45.0, "acer_temp3": 52.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3409}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3296}}, "last_error": null, "uptime": 5.39, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568508.8241718, "stage": "manual-25", "elapsed_s": 6.37, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 54.0, "gpu": 45.0, "acer_temp1": 52.0, "acer_temp2": 45.0, "acer_temp3": 51.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3370}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3296}}, "last_error": null, "uptime": 6.47, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568509.901768, "stage": "manual-25", "elapsed_s": 7.45, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 54.0, "gpu": 45.0, "acer_temp1": 52.0, "acer_temp2": 45.0, "acer_temp3": 51.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3296}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3296}}, "last_error": null, "uptime": 7.55, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "sample", "timestamp": 1793568510.9830148, "stage": "manual-25", "elapsed_s": 8.53, "status": {"ok": true, "mode": "fixed", "requested_mode": "fixed", "emergency": false, "backend": "nbfc", "read_only": false, "can_control": true, "percent_kind": "requested_target", "temps": {"cpu": 51.0, "gpu": 45.0, "acer_temp1": 51.0, "acer_temp2": 45.0, "acer_temp3": 53.0}, "fans": {"fan1": {"percent": 25, "requested_percent": 25, "rpm": 3225}, "fan2": {"percent": 25, "requested_percent": 25, "rpm": 3260}}, "last_error": null, "uptime": 8.63, "curves": {}}, "registers": {"0x03": 33, "0x10": 0, "0x21": 48, "0x22": 12, "0x37": 25, "0x38": 0, "0x3a": 25, "0x3b": 0}}
+{"event": "cleanup", "timestamp": 1793568512.6226938, "restored": true, "registers": {"0x03": 33, "0x10": 0, "0x21": 0, "0x22": 0, "0x37": 0, "0x38": 0, "0x3a": 0, "0x3b": 0}, "write_support": "N"}
+{"event": "failed", "timestamp": 1793568512.6304984, "error": "Controller reported a fault: {'ok': True, 'mode': 'emergency', 'requested_mode': 'fixed', 'emergency': True, 'backend': 'nbfc', 'read_only': False, 'can_control': True, 'percent_kind': 'requested_target', 'temps': {'cpu': 51.0, 'gpu': 45.0, 'acer_temp1': 51.0, 'acer_temp2': 45.0, 'acer_temp3': 53.0}, 'fans': {'fan1': {'percent': 100, 'requested_percent': 100, 'rpm': 3225}, 'fan2': {'percent': 100, 'requested_percent': 100, 'rpm': 3157}}, 'last_error': None, 'uptime': 9.71, 'curves': {}}"}
+Backend validation failed: Controller reported a fault: {'ok': True, 'mode': 'emergency', 'requested_mode': 'fixed', 'emergency': True, 'backend': 'nbfc', 'read_only': False, 'can_control': True, 'percent_kind': 'requested_target', 'temps': {'cpu': 51.0, 'gpu': 45.0, 'acer_temp1': 51.0, 'acer_temp2': 45.0, 'acer_temp3': 53.0}, 'fans': {'fan1': {'percent': 100, 'requested_percent': 100, 'rpm': 3225}, 'fan2': {'percent': 100, 'requested_percent': 100, 'rpm': 3157}}, 'last_error': None, 'uptime': 9.71, 'curves': {}}
+Installation failed: Command '('/usr/bin/python3', '/opt/nitrofan/tools/validate_backend.py')' returned non-zero exit status 1.
+Backend installed. Services remain stopped and are not enabled at boot.

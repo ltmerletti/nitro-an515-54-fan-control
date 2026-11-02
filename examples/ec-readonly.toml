@@ -1,0 +1,35 @@
+# NitroFan read-only EC RPM configuration.
+#
+# Provenance:
+# Verified on Acer Nitro AN515-54, BIOS V1.33 with ec_sys write_support=0
+# (paired capture baseline docs/data/ec-passive-baseline-2026-11-01.jsonl).
+#
+# Register format:
+# Decoded as little-endian 16-bit unsigned integer (low + 256 * high):
+#   fan1: low 0x13, high 0x14 (tracks acer_wmi driver fan1_input)
+#   fan2: low 0x15, high 0x16 (tracks acer_wmi driver fan2_input)
+#
+# Hardware constraints:
+# - Physical fan assignments (which fan cools CPU vs GPU) are UNVERIFIED.
+#   Neutral identifiers 'fan1' and 'fan2' are retained.
+# - Fan control semantics (unlock, manual mode, speed targets) are UNVERIFIED.
+# - This configuration is strictly read-only: zero hardware writes.
+# - Direct EC access requires root/sudo privileges to read
+#   /sys/kernel/debug/ec/ec0/io or /dev/ec.
+
+backend = "ec"
+tick_s = 2
+reassert_s = 10
+min_percent = 25
+emergency_c = 90
+startup_mode = "auto"
+
+[ec_rpm.fan1]
+low_register = 0x13
+high_register = 0x14
+encoding = "u16_le"
+
+[ec_rpm.fan2]
+low_register = 0x15
+high_register = 0x16
+encoding = "u16_le"
