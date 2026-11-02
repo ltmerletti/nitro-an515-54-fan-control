@@ -99,37 +99,56 @@ class TestNitroFans(unittest.TestCase):
         self.assertEqual(nitro_fans.main(["set", "max"]), 1)
         self.assertFalse((self.root / "sys/class/hwmon/hwmon5/pwm1_enable").exists())
 
-    def test_toggle_uses_pkexec_and_reports_rpm(self):
-        laptop = FakeLaptop(self.root)
+    def test_panel_entry_goes_beside_the_battery_once(self):
+        default = ["panel1:left:0:menu@cinnamon.org", "panel1:right:8:sound@cinnamon.org",
+                   "panel1:right:9:power@cinnamon.org:12", "panel1:right:10:calendar@cinnamon.org"]
+        added = nitro_fans.panel_with_applet(default)
+        self.assertEqual(added[-1], "panel1:right:9:" + nitro_fans.APPLET_UUID)
+        self.assertEqual(added[:-1], default)
+        self.assertIsNone(nitro_fans.panel_with_applet(added))
+        self.assertEqual(nitro_fans.panel_without_applet(added), default)
+        self.assertEqual(nitro_fans.panel_with_applet([])[-1], "panel1:right:0:" + nitro_fans.APPLET_UUID)
 
-        def fake_pkexec(cmd, check):
-            self.assertEqual(cmd[:2], ["pkexec", nitro_fans.INSTALLED])
-            nitro_fans.set_mode(cmd[3])
-            return mock.Mock(returncode=0)
+    def test_gsettings_values_parse(self):
+        self.assertEqual(nitro_fans.parse_strv("@as []\n"), [])
+        self.assertEqual(nitro_fans.parse_strv("['a:b:c:d', 'e']\n"), ["a:b:c:d", "e"])
+        with self.assertRaises(ValueError):
+            nitro_fans.parse_strv("[1, 2]")
 
-        with mock.patch.object(nitro_fans.subprocess, "run", side_effect=fake_pkexec), \
-             mock.patch.object(nitro_fans.shutil, "which", return_value=None), \
-             mock.patch.object(nitro_fans.time, "sleep"), redirect_stdout(io.StringIO()) as out:
-            self.assertEqual(nitro_fans.toggle(), 0)
-            self.assertEqual(laptop.pwm(), ["0", "0"])
-            self.assertEqual(nitro_fans.toggle(), 0)
-        self.assertEqual(laptop.pwm(), ["2", "2"])
-        self.assertIn("Fans on MAX (2400 RPM / 2400 RPM)", out.getvalue())
-        self.assertIn("Fans back on Auto", out.getvalue())
+    def test_panel_update_runs_gsettings_as_the_desktop_user(self):
+        calls = []
 
-    def test_toggle_without_support_explains(self):
-        FakeLaptop(self.root, pwm=False)
-        with mock.patch.object(nitro_fans.shutil, "which", return_value=None), \
-             redirect_stdout(io.StringIO()) as out:
-            self.assertEqual(nitro_fans.toggle(), 1)
-        self.assertIn("not available", out.getvalue())
+        def fake_run(cmd, **kwargs):
+            calls.append(cmd)
+            return mock.Mock(returncode=0, stdout="['panel1:right:9:power@cinnamon.org']\n")
+
+        with mock.patch.dict(nitro_fans.os.environ, {"SUDO_USER": "friend"}), \
+             mock.patch.object(nitro_fans.pwd, "getpwnam", return_value=mock.Mock(pw_uid=1000)):
+            self.assertTrue(nitro_fans.update_panel(nitro_fans.panel_with_applet, fake_run))
+        self.assertEqual(calls[0][:5], ["sudo", "-u", "friend", "env",
+                                        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"])
+        self.assertEqual(calls[1][5:9], ["gsettings", "set", "org.cinnamon", "enabled-applets"])
+        self.assertEqual(nitro_fans.parse_strv(calls[1][9]),
+                         ["panel1:right:9:power@cinnamon.org", "panel1:right:9:" + nitro_fans.APPLET_UUID])
+
+    def test_panel_update_skipped_without_a_desktop_user(self):
+        with mock.patch.dict(nitro_fans.os.environ, {}, clear=True):
+            self.assertFalse(nitro_fans.update_panel(nitro_fans.panel_with_applet, lambda *a, **k: None))
+
+    def test_applet_only_offers_auto_and_max_through_the_helper(self):
+        js = nitro_fans.APPLET_JS
+        self.assertIn('const HELPER = "/usr/local/bin/nitro-fans";', js)
+        self.assertIn('["pkexec", HELPER, "set", mode]', js)
+        self.assertEqual(js.count('_setMode("'), 2)
+        self.assertNotIn("writeFile", js)
+        self.assertIn(nitro_fans.APPLET_UUID, nitro_fans.APPLET_METADATA)
 
     def test_install_on_old_kernel_adds_hwe_and_writes_files(self):
         FakeLaptop(self.root)
         calls = []
         with redirect_stdout(io.StringIO()):
-            nitro_fans.install(run=lambda cmd, check: calls.append(cmd), release="6.17.0-14-generic")
-        self.assertEqual(calls, [["apt-get", "install", "-y", "linux-generic-hwe-24.04"]])
+            nitro_fans.install(run=lambda cmd, **kw: calls.append(cmd), release="6.17.0-14-generic")
+        self.assertEqual(calls, [["apt-get", "update"], ["apt-get", "install", "-y", "linux-generic-hwe-24.04"]])
         conf = (self.root / nitro_fans.MODPROBE_CONF).read_text()
         self.assertIn("force_caps=", conf)
         rule = (self.root / nitro_fans.UDEV_RULE).read_text()
@@ -138,8 +157,9 @@ class TestNitroFans(unittest.TestCase):
         policy = (self.root / nitro_fans.POLKIT_POLICY).read_text()
         self.assertIn(f">{nitro_fans.INSTALLED}<", policy)
         self.assertIn("<allow_active>yes</allow_active>", policy)
-        self.assertIn("Exec=/usr/local/bin/nitro-fans toggle",
-                      (self.root / nitro_fans.DESKTOP_ENTRY).read_text())
+        applet = self.root / nitro_fans.APPLET_DIR
+        self.assertTrue((applet / "metadata.json").is_file())
+        self.assertEqual((applet / "applet.js").read_text(), nitro_fans.APPLET_JS)
         helper = self.root / nitro_fans.INSTALLED.lstrip("/")
         self.assertEqual(helper.read_text(), SOURCE.read_text())
         self.assertTrue(helper.stat().st_mode & 0o111)
@@ -148,16 +168,16 @@ class TestNitroFans(unittest.TestCase):
         FakeLaptop(self.root)
         calls = []
         with redirect_stdout(io.StringIO()):
-            nitro_fans.install(run=lambda cmd, check: calls.append(cmd), release="7.0.0-31-generic")
+            nitro_fans.install(run=lambda cmd, **kw: calls.append(cmd), release="7.0.0-31-generic")
         self.assertEqual(calls, [])
 
     def test_uninstall_removes_everything(self):
         FakeLaptop(self.root)
         with redirect_stdout(io.StringIO()):
-            nitro_fans.install(run=lambda cmd, check: None, release="7.0.0-31-generic")
-            nitro_fans.uninstall()
+            nitro_fans.install(run=lambda cmd, **kw: None, release="7.0.0-31-generic")
+            nitro_fans.uninstall(run=lambda cmd, **kw: None)
         for relative in (nitro_fans.MODPROBE_CONF, nitro_fans.POLKIT_POLICY, nitro_fans.UDEV_RULE,
-                         nitro_fans.DESKTOP_ENTRY, nitro_fans.INSTALLED):
+                         nitro_fans.APPLET_DIR, nitro_fans.INSTALLED):
             self.assertFalse((self.root / relative.lstrip("/")).exists(), relative)
 
     def test_refuses_other_laptops_and_nitrofan_hosts(self):

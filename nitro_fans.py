@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """Max/Auto fan toggle for Acer Nitro laptops on Linux Mint.
 
-Install once, after Mint and its drivers are set up:
+Install once, after Mint and its drivers are set up (one line in Terminal):
 
-    sudo python3 nitro_fans.py install
+    wget -qO /tmp/nitro_fans.py https://raw.githubusercontent.com/ltmerletti/nitro-an515-54-fan-control/main/nitro_fans.py && sudo python3 /tmp/nitro_fans.py install
 
-Then restart. "Fans: Max / Auto" appears in the Mint menu.
+Then restart. A fan button sits in the panel next to the clock: click it and
+choose Auto or Max.
 
 The fans are switched by Acer's own firmware interface through the kernel's
 acer_wmi driver, the same switch NitroSense uses on Windows. Nothing writes to
@@ -14,17 +15,17 @@ offered; fixed low speeds are not, so this cannot stop the fans. Every boot
 starts in Auto.
 
 Kernel 6.19 or later is needed for Max. On Mint 22.x the installer adds
-Ubuntu's 7.0 HWE kernel. Undo with: sudo python3 nitro_fans.py uninstall
+Ubuntu's 7.0 HWE kernel. Undo with: sudo nitro-fans uninstall
 """
 
 from __future__ import annotations
 
 import argparse
+import ast
 import os
-import shutil
+import pwd
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 ROOT = Path(os.environ.get("NITRO_FANS_ROOT", "/"))
@@ -32,7 +33,8 @@ INSTALLED = "/usr/local/bin/nitro-fans"
 MODPROBE_CONF = "etc/modprobe.d/nitro-fans.conf"
 POLKIT_POLICY = "usr/share/polkit-1/actions/org.nitrofans.policy"
 UDEV_RULE = "etc/udev/rules.d/90-nitro-fans.rules"
-DESKTOP_ENTRY = "usr/share/applications/nitro-fans.desktop"
+APPLET_UUID = "nitro-fans@nitrofans"
+APPLET_DIR = "usr/share/cinnamon/applets/" + APPLET_UUID
 MIN_KERNEL = (6, 19)
 HWE_PACKAGE = "linux-generic-hwe-24.04"
 
@@ -168,28 +170,6 @@ def rpm() -> list[int]:
     return speeds
 
 
-def notify(message: str) -> None:
-    print(message)
-    if shutil.which("notify-send"):
-        subprocess.run(["notify-send", "-i", "weather-windy", "Nitro fans", message], check=False)
-
-
-def toggle() -> int:
-    """Run from the menu as the desktop user; the change itself goes through pkexec."""
-    if not has_pwm():
-        notify("Max fans are not available on this laptop yet. Restart, then try again.")
-        return 1
-    target = "auto" if current_mode() == "max" else "max"
-    result = subprocess.run(["pkexec", INSTALLED, "set", target], check=False)
-    if result.returncode != 0 or current_mode() != target:
-        notify("Could not change the fans. They are still on " + (current_mode() or "unknown") + ".")
-        return 1
-    time.sleep(4)
-    speeds = " / ".join(f"{s} RPM" for s in rpm()) or "speed unknown"
-    notify(("Fans on MAX" if target == "max" else "Fans back on Auto") + f" ({speeds})")
-    return 0
-
-
 # ---------------------------------------------------------------- install
 
 POLICY = f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -212,16 +192,173 @@ POLICY = f"""<?xml version="1.0" encoding="UTF-8"?>
 # Every time the Acer driver registers its fan controls (each boot), start in Auto.
 RULE = f'ACTION=="add", SUBSYSTEM=="hwmon", ATTR{{name}}=="acer", RUN+="{INSTALLED} set auto"\n'
 
-DESKTOP = f"""[Desktop Entry]
-Type=Application
-Name=Fans: Max / Auto
-Comment=Switch the laptop fans between Max and Auto
-Exec={INSTALLED} toggle
-Icon=weather-windy
-Terminal=false
-Categories=System;Settings;
-Keywords=fan;nitro;max;cooling;gaming;
+APPLET_METADATA = f"""{{
+  "uuid": "{APPLET_UUID}",
+  "name": "Nitro Fans",
+  "description": "Switch the laptop fans between Auto and Max",
+  "icon": "weather-windy-symbolic",
+  "max-instances": 1
+}}
 """
+
+# Cinnamon panel applet. It reads the fan state straight from sysfs every few
+# seconds and changes it through pkexec, which the polkit policy allows for the
+# logged-in user without a password.
+APPLET_JS = """const Applet = imports.ui.applet;
+const PopupMenu = imports.ui.popupMenu;
+const Util = imports.misc.util;
+const GLib = imports.gi.GLib;
+const Mainloop = imports.mainloop;
+const ByteArray = imports.byteArray;
+
+const HELPER = "%(helper)s";
+
+function readFile(path) {
+    try {
+        let [ok, contents] = GLib.file_get_contents(path);
+        return ok ? ByteArray.toString(contents).trim() : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function acerHwmon() {
+    for (let i = 0; i < 64; i++) {
+        let dir = "/sys/class/hwmon/hwmon" + i;
+        if (readFile(dir + "/name") === "acer")
+            return dir;
+    }
+    return null;
+}
+
+class NitroFansApplet extends Applet.TextIconApplet {
+    constructor(metadata, orientation, panelHeight, instanceId) {
+        super(orientation, panelHeight, instanceId);
+        this.set_applet_icon_symbolic_name("weather-windy-symbolic");
+
+        this.menuManager = new PopupMenu.PopupMenuManager(this);
+        this.menu = new Applet.AppletPopupMenu(this, orientation);
+        this.menuManager.addMenu(this.menu);
+
+        this.autoItem = new PopupMenu.PopupMenuItem("Auto");
+        this.autoItem.connect("activate", () => this._setMode("auto"));
+        this.menu.addMenuItem(this.autoItem);
+        this.maxItem = new PopupMenu.PopupMenuItem("Max");
+        this.maxItem.connect("activate", () => this._setMode("max"));
+        this.menu.addMenuItem(this.maxItem);
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        this.infoItem = new PopupMenu.PopupMenuItem("", { reactive: false });
+        this.menu.addMenuItem(this.infoItem);
+
+        this._refresh();
+        this._timer = Mainloop.timeout_add_seconds(3, () => {
+            this._refresh();
+            return true;
+        });
+    }
+
+    on_applet_clicked() {
+        this._refresh();
+        this.menu.toggle();
+    }
+
+    on_applet_removed_from_panel() {
+        if (this._timer)
+            Mainloop.source_remove(this._timer);
+        this._timer = 0;
+    }
+
+    _setMode(mode) {
+        Util.spawn(["pkexec", HELPER, "set", mode]);
+        Mainloop.timeout_add(800, () => {
+            this._refresh();
+            return false;
+        });
+    }
+
+    _refresh() {
+        let hwmon = acerHwmon();
+        let one = hwmon ? readFile(hwmon + "/pwm1_enable") : null;
+        let two = hwmon ? readFile(hwmon + "/pwm2_enable") : null;
+        if (one === null || two === null) {
+            this.set_applet_label("");
+            this.autoItem.setSensitive(false);
+            this.maxItem.setSensitive(false);
+            this.infoItem.label.set_text("Max fans need a restart to start working");
+            this.set_applet_tooltip("Nitro fans: not available yet");
+            return;
+        }
+        let max = one === "0" && two === "0";
+        let auto = one === "2" && two === "2";
+        this.autoItem.setSensitive(true);
+        this.maxItem.setSensitive(true);
+        this.autoItem.setShowDot(auto);
+        this.maxItem.setShowDot(max);
+        this.set_applet_label(max ? "MAX" : (auto ? "Auto" : "?"));
+        let speeds = [1, 2].map(i => readFile(hwmon + "/fan" + i + "_input"))
+                           .filter(v => v !== null).map(v => v + " RPM").join(" / ");
+        this.infoItem.label.set_text("Fans: " + (speeds || "unknown"));
+        this.set_applet_tooltip("Nitro fans: " + (max ? "Max" : "Auto") + (speeds ? " (" + speeds + ")" : ""));
+    }
+}
+
+function main(metadata, orientation, panelHeight, instanceId) {
+    return new NitroFansApplet(metadata, orientation, panelHeight, instanceId);
+}
+""" % {"helper": INSTALLED}
+
+
+# ---------------------------------------------------------------- panel
+
+def parse_strv(text: str) -> list[str]:
+    text = text.strip()
+    if text.startswith("@as"):
+        text = text[3:].strip()
+    value = ast.literal_eval(text)
+    if not isinstance(value, list) or not all(isinstance(v, str) for v in value):
+        raise ValueError(f"unexpected gsettings value: {text!r}")
+    return value
+
+
+def panel_with_applet(entries: list[str]) -> list[str] | None:
+    """Return the panel list with the fan applet added beside the battery, or None."""
+    if any(entry.split(":")[3:4] == [APPLET_UUID] for entry in entries):
+        return None
+    panel, order = "panel1", 0
+    for entry in entries:
+        parts = entry.split(":")
+        if len(parts) >= 4 and parts[3] == "power@cinnamon.org":
+            panel, order = parts[0], int(parts[2])
+            break
+    return entries + [f"{panel}:right:{order}:{APPLET_UUID}"]
+
+
+def panel_without_applet(entries: list[str]) -> list[str]:
+    return [entry for entry in entries if entry.split(":")[3:4] != [APPLET_UUID]]
+
+
+def as_desktop_user(command: list[str]) -> list[str] | None:
+    user = os.environ.get("SUDO_USER")
+    if not user or user == "root":
+        return None
+    uid = pwd.getpwnam(user).pw_uid
+    return ["sudo", "-u", user, "env", f"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{uid}/bus",
+            *command]
+
+
+def update_panel(change, run=subprocess.run) -> bool:
+    get = as_desktop_user(["gsettings", "get", "org.cinnamon", "enabled-applets"])
+    if get is None:
+        return False
+    current = run(get, capture_output=True, text=True, check=False)
+    if current.returncode != 0:
+        return False
+    updated = change(parse_strv(current.stdout))
+    if updated is None:
+        return True
+    result = run(as_desktop_user(["gsettings", "set", "org.cinnamon", "enabled-applets", repr(updated)]),
+                 check=False)
+    return result.returncode == 0
 
 
 def write(relative: str, content: str, mode: int = 0o644) -> None:
@@ -237,20 +374,32 @@ def install(run=subprocess.run, release: str | None = None) -> int:
     options = driver_options()
     if kernel_version(release) < MIN_KERNEL:
         print(f"Installing the newer kernel ({HWE_PACKAGE}); this takes a few minutes.")
+        run(["apt-get", "update"], check=True)
         run(["apt-get", "install", "-y", HWE_PACKAGE], check=True)
     write(INSTALLED, Path(__file__).read_text(), 0o755)
     write(MODPROBE_CONF, "# Acer firmware fan modes (nitro_fans.py)\n" + options + "\n")
     write(POLKIT_POLICY, POLICY)
     write(UDEV_RULE, RULE)
-    write(DESKTOP_ENTRY, DESKTOP)
+    write(APPLET_DIR + "/metadata.json", APPLET_METADATA)
+    write(APPLET_DIR + "/applet.js", APPLET_JS)
     print(f"Driver setting: {options}")
-    print("Done. Restart the laptop, then open the menu and choose \"Fans: Max / Auto\".")
+    if update_panel(panel_with_applet, run):
+        print("Added the fan button to the panel.")
+    else:
+        print("Add the button yourself: right-click the panel, choose Applets, and add Nitro Fans.")
+    print("Done. Restart the laptop. Then click the fan button in the panel to choose Auto or Max.")
     return 0
 
 
-def uninstall() -> int:
-    for relative in (MODPROBE_CONF, POLKIT_POLICY, UDEV_RULE, DESKTOP_ENTRY, INSTALLED):
+def uninstall(run=subprocess.run) -> int:
+    update_panel(panel_without_applet, run)
+    for relative in (MODPROBE_CONF, POLKIT_POLICY, UDEV_RULE, APPLET_DIR + "/metadata.json",
+                     APPLET_DIR + "/applet.js", INSTALLED):
         path(relative).unlink(missing_ok=True)
+    try:
+        path(APPLET_DIR).rmdir()
+    except OSError:
+        pass
     print("Removed. Restart to return the Acer driver to its defaults.")
     return 0
 
@@ -269,7 +418,6 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("install")
     sub.add_parser("uninstall")
-    sub.add_parser("toggle")
     sub.add_parser("status")
     setter = sub.add_parser("set")
     setter.add_argument("mode", choices=sorted(MODES))
@@ -286,8 +434,6 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         set_mode(args.mode)
         return 0
-    if args.command == "toggle":
-        return toggle()
     return status()
 
 
