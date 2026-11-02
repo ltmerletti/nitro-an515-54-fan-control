@@ -47,6 +47,76 @@ class FakeLaptop:
         return [(self.hwmon / f"pwm{i}_enable").read_text().strip() for i in (1, 2)]
 
 
+OLD = "6.14.0-37-generic"
+NEW = "7.0.0-42-generic"
+
+
+class FakeSystem:
+    """Simulates apt, dpkg-query, modinfo and dkms for the kernel step."""
+
+    def __init__(self, root: Path, nvidia=None, apt_brings_nvidia=False, prebuilt_fixes=False,
+                 dkms_fixes=False, hwe_meta=False, kernel_installs=True):
+        self.root, self.calls = root, []
+        self.nvidia = dict(nvidia or {})   # kernel -> (version, license)
+        self.apt_brings_nvidia, self.prebuilt_fixes = apt_brings_nvidia, prebuilt_fixes
+        self.dkms_fixes, self.kernel_installs = dkms_fixes, kernel_installs
+        self.packages = {"linux-image-" + OLD}
+        if hwe_meta:
+            self.packages.add("linux-generic-hwe-24.04")
+        self.add_kernel(OLD)
+
+    def add_kernel(self, release):
+        d = self.root / "lib/modules" / release
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "modules.order").write_text("")
+
+    def result(self, code=0, out=""):
+        return mock.Mock(returncode=code, stdout=out)
+
+    def __call__(self, cmd, **kwargs):
+        self.calls.append(cmd)
+        if cmd[:2] == ["modinfo", "-k"]:
+            info = self.nvidia.get(cmd[2])
+            if not info:
+                return self.result(1)
+            return self.result(0, (info[0] if cmd[4] == "version" else info[1]) + "\n")
+        if cmd[:2] == ["dpkg-query", "-W"] and cmd[3] == "${Status}":
+            ok = cmd[4] in self.packages
+            return self.result(0 if ok else 1, "install ok installed" if ok else "")
+        if cmd[:2] == ["dpkg-query", "-W"]:
+            pattern = cmd[4].strip("*")
+            return self.result(0, "\n".join(p for p in sorted(self.packages) if pattern in p))
+        if cmd == ["apt-get", "update"]:
+            return self.result()
+        if cmd == ["apt-get", "install", "-y", "linux-generic-hwe-24.04"]:
+            if self.kernel_installs:
+                self.add_kernel(NEW)
+                self.packages |= {"linux-generic-hwe-24.04", "linux-image-generic-hwe-24.04",
+                                  "linux-headers-generic-hwe-24.04", "linux-image-" + NEW,
+                                  "linux-modules-" + NEW, "linux-hwe-7.0-headers-7.0.0-42"}
+                if self.apt_brings_nvidia:
+                    self.nvidia[NEW] = self.nvidia[OLD]
+            return self.result()
+        if cmd[:3] == ["apt-get", "install", "-y"] and cmd[3].startswith("linux-modules-nvidia-"):
+            if self.prebuilt_fixes:
+                self.nvidia[NEW] = self.nvidia[OLD]
+                self.packages.add(cmd[3])
+                return self.result()
+            return self.result(100)
+        if cmd[:2] == ["dkms", "autoinstall"]:
+            if self.dkms_fixes:
+                self.nvidia[NEW] = self.nvidia[OLD]
+            return self.result()
+        if cmd[:3] == ["apt-get", "remove", "-y"]:
+            self.removed = cmd[3:]
+            self.packages -= set(cmd[3:])
+            if "linux-image-" + NEW in cmd:
+                import shutil
+                shutil.rmtree(self.root / "lib/modules" / NEW)
+            return self.result()
+        raise AssertionError(f"unexpected command {cmd}")
+
+
 class TestNitroFans(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -167,12 +237,23 @@ class TestNitroFans(unittest.TestCase):
         self.assertNotIn("writeFile", js)
         self.assertIn(nitro_fans.APPLET_UUID, nitro_fans.APPLET_METADATA)
 
+    def install_with(self, system, release=OLD):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            nitro_fans.install(run=system, release=release)
+        return out.getvalue()
+
+    def assert_nothing_written(self):
+        for relative in (nitro_fans.MODPROBE_CONF, nitro_fans.POLKIT_POLICY, nitro_fans.UDEV_RULE,
+                         nitro_fans.APPLET_DIR, nitro_fans.INSTALLED):
+            self.assertFalse((self.root / relative.lstrip("/")).exists(), relative)
+
     def test_install_on_old_kernel_adds_hwe_and_writes_files(self):
         FakeLaptop(self.root)
-        calls = []
-        with redirect_stdout(io.StringIO()):
-            nitro_fans.install(run=lambda cmd, **kw: calls.append(cmd), release="6.17.0-14-generic")
-        self.assertEqual(calls, [["apt-get", "update"], ["apt-get", "install", "-y", "linux-generic-hwe-24.04"]])
+        system = FakeSystem(self.root)
+        output = self.install_with(system)
+        self.assertIn(["apt-get", "install", "-y", "linux-generic-hwe-24.04"], system.calls)
+        self.assertIn("Restart the laptop", output)
         conf = (self.root / nitro_fans.MODPROBE_CONF).read_text()
         self.assertIn("force_caps=", conf)
         rule = (self.root / nitro_fans.UDEV_RULE).read_text()
@@ -187,6 +268,74 @@ class TestNitroFans(unittest.TestCase):
         helper = self.root / nitro_fans.INSTALLED.lstrip("/")
         self.assertEqual(helper.read_text(), SOURCE.read_text())
         self.assertTrue(helper.stat().st_mode & 0o111)
+
+    def test_nvidia_ready_for_new_kernel_needs_no_repair(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root, nvidia={OLD: ("580.95.05", "NVIDIA")}, apt_brings_nvidia=True)
+        self.install_with(system)
+        self.assertFalse(any(c[:2] == ["dkms", "autoinstall"] for c in system.calls))
+        self.assertTrue((self.root / nitro_fans.MODPROBE_CONF).exists())
+
+    def test_missing_nvidia_is_repaired_with_the_prebuilt_package(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root, nvidia={OLD: ("580.95.05", "Dual MIT/GPL")}, prebuilt_fixes=True)
+        self.install_with(system)
+        self.assertIn(["apt-get", "install", "-y", "linux-modules-nvidia-580-open-generic-hwe-24.04"],
+                      system.calls)
+        self.assertTrue((self.root / "lib/modules" / NEW).is_dir())
+        self.assertTrue((self.root / nitro_fans.MODPROBE_CONF).exists())
+
+    def test_missing_nvidia_is_repaired_with_dkms(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root, nvidia={OLD: ("550.120", "NVIDIA")}, dkms_fixes=True)
+        self.install_with(system)
+        self.assertIn(["apt-get", "install", "-y", "linux-modules-nvidia-550-generic-hwe-24.04"],
+                      system.calls)
+        self.assertIn(["dkms", "autoinstall", "-k", NEW], system.calls)
+        self.assertTrue((self.root / "lib/modules" / NEW).is_dir())
+
+    def test_unfixable_nvidia_removes_the_new_kernel_and_changes_nothing(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root, nvidia={OLD: ("580.95.05", "NVIDIA")})
+        with self.assertRaises(SystemExit) as stop, redirect_stdout(io.StringIO()):
+            nitro_fans.install(run=system, release=OLD)
+        self.assertIn("start exactly as before", str(stop.exception))
+        self.assertFalse((self.root / "lib/modules" / NEW).exists())
+        self.assertTrue((self.root / "lib/modules" / OLD).exists())
+        for package in ("linux-image-" + NEW, "linux-generic-hwe-24.04", "linux-image-generic-hwe-24.04"):
+            self.assertIn(package, system.removed)
+        self.assertNotIn("linux-image-" + OLD, system.removed)
+        self.assertIn("linux-image-" + OLD, system.packages)
+        self.assert_nothing_written()
+
+    def test_hwe_track_is_left_to_mint_updates(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root, nvidia={OLD: ("580.95.05", "NVIDIA")}, hwe_meta=True)
+        output = self.install_with(system)
+        self.assertFalse(any(c[:2] in (["apt-get", "install"], ["apt-get", "remove"]) for c in system.calls))
+        self.assertIn("Update Manager", output)
+        self.assertTrue((self.root / nitro_fans.MODPROBE_CONF).exists())
+
+    def test_new_kernel_already_installed_needs_no_apt(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root)
+        system.add_kernel(NEW)
+        output = self.install_with(system)
+        self.assertFalse(any(c[0] == "apt-get" for c in system.calls))
+        self.assertIn("Restart the laptop", output)
+
+    def test_failed_kernel_install_changes_nothing(self):
+        FakeLaptop(self.root)
+        system = FakeSystem(self.root, kernel_installs=False)
+        with self.assertRaises(SystemExit), redirect_stdout(io.StringIO()):
+            nitro_fans.install(run=system, release=OLD)
+        self.assert_nothing_written()
+
+    def test_kernel_ordering(self):
+        self.assertLess(nitro_fans.kernel_sort_key("6.17.0-14-generic"),
+                        nitro_fans.kernel_sort_key("7.0.0-9-generic"))
+        self.assertLess(nitro_fans.kernel_sort_key("7.0.0-9-generic"),
+                        nitro_fans.kernel_sort_key("7.0.0-42-generic"))
 
     def test_install_on_new_kernel_skips_apt(self):
         FakeLaptop(self.root)

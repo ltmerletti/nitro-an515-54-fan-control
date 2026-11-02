@@ -90,6 +90,26 @@ def kernel_version(release: str | None = None) -> tuple[int, int]:
     return int(parts[0]), int(parts[1])
 
 
+def kernel_sort_key(release: str) -> tuple[int, ...]:
+    """'7.0.0-42-generic' -> (7, 0, 0, 42) for ordering installed kernels."""
+    numbers = release.replace("-", ".").split(".")
+    key = []
+    for part in numbers:
+        if not part.isdigit():
+            break
+        key.append(int(part))
+    return tuple(key)
+
+
+def installed_kernels() -> list[str]:
+    modules = path("lib/modules")
+    if not modules.is_dir():
+        return []
+    found = [d.name for d in modules.iterdir()
+             if d.is_dir() and d.name[:1].isdigit() and (d / "modules.order").exists()]
+    return sorted(found, key=kernel_sort_key)
+
+
 def driver_caps() -> int:
     """Keep what acer_wmi already detects and add profiles, sensors and fan modes."""
     device = path("sys/devices/platform/acer-wmi")
@@ -426,14 +446,86 @@ def write(relative: str, content: str, mode: int = 0o644) -> None:
     target.chmod(mode)
 
 
+# ---------------------------------------------------------------- new kernel
+
+def nvidia_module(run, release: str) -> dict[str, str] | None:
+    """Version and licence of the NVIDIA module built for a kernel, or None."""
+    result = run(["modinfo", "-k", release, "-F", "version", "nvidia"],
+                 capture_output=True, text=True, check=False)
+    version = (result.stdout or "").strip() if result.returncode == 0 else ""
+    if not version:
+        return None
+    licence = run(["modinfo", "-k", release, "-F", "license", "nvidia"],
+                  capture_output=True, text=True, check=False)
+    return {"version": version, "license": (licence.stdout or "").strip()}
+
+
+def repair_nvidia(run, new: str, current: dict[str, str]) -> list[str]:
+    """Try to give the new kernel an NVIDIA module. Returns packages it installed."""
+    branch = current["version"].split(".")[0]
+    flavour = "-open" if "MIT" in current["license"] else ""
+    package = f"linux-modules-nvidia-{branch}{flavour}-generic-hwe-24.04"
+    print("Making sure the NVIDIA driver is ready for the new kernel...")
+    if run(["apt-get", "install", "-y", package], check=False).returncode == 0:
+        if nvidia_module(run, new):
+            return [package]
+    run(["dkms", "autoinstall", "-k", new], check=False)
+    return [package]
+
+
+def remove_kernel(run, new: str, extra: list[str]) -> None:
+    listed = run(["dpkg-query", "-W", "-f", "${Package}\\n", f"*{new.removesuffix('-generic')}*"],
+                 capture_output=True, text=True, check=False)
+    packages = [name for name in (listed.stdout or "").split() if name]
+    packages += [HWE_PACKAGE, "linux-image-generic-hwe-24.04", "linux-headers-generic-hwe-24.04", *extra]
+    run(["apt-get", "remove", "-y", *packages], check=False)
+
+
+def package_installed(run, name: str) -> bool:
+    result = run(["dpkg-query", "-W", "-f", "${Status}", name],
+                 capture_output=True, text=True, check=False)
+    return result.returncode == 0 and "install ok installed" in (result.stdout or "")
+
+
+def add_new_kernel(run, release: str | None = None) -> bool:
+    """Make a 6.19+ kernel the next one to start. Returns False if Mint's own
+    updates should deliver it instead. Never leaves a kernel without NVIDIA."""
+    if any(kernel_version(k) >= MIN_KERNEL for k in installed_kernels()):
+        return True  # already installed; it starts after the restart
+    if package_installed(run, HWE_PACKAGE):
+        # Mint already follows Ubuntu's newer kernels and will offer 7.0 as a
+        # normal update. Removing it here could stop his kernel updates, so
+        # leave it to Mint.
+        return False
+    running = release or os.uname().release
+    before = set(installed_kernels())
+    current_nvidia = nvidia_module(run, running)
+    print(f"Installing the newer kernel ({HWE_PACKAGE}); this takes a few minutes.")
+    run(["apt-get", "update"], check=True)
+    run(["apt-get", "install", "-y", HWE_PACKAGE], check=True)
+    candidates = [k for k in installed_kernels() if kernel_version(k) >= MIN_KERNEL]
+    if not candidates:
+        raise SystemExit("The newer kernel did not install. Nothing else was changed.")
+    new = candidates[-1]
+    if current_nvidia is None or nvidia_module(run, new):
+        return True
+    extra = repair_nvidia(run, new, current_nvidia)
+    if nvidia_module(run, new):
+        return True
+    if new not in before:
+        print("The NVIDIA driver isn't ready for the new kernel, so it is being removed again.")
+        remove_kernel(run, new, extra)
+    raise SystemExit(
+        "Not installed: the NVIDIA driver doesn't support the newer kernel yet. Your laptop "
+        "will start exactly as before. Try this command again after the next Mint updates, "
+        "or after upgrading to Linux Mint 23.")
+
+
 def install(run=subprocess.run, release: str | None = None) -> int:
     product = check_laptop()
     print(f"Setting up Max/Auto fans for the {product}.")
     options = driver_options()
-    if kernel_version(release) < MIN_KERNEL:
-        print(f"Installing the newer kernel ({HWE_PACKAGE}); this takes a few minutes.")
-        run(["apt-get", "update"], check=True)
-        run(["apt-get", "install", "-y", HWE_PACKAGE], check=True)
+    kernel_ready = kernel_version(release) >= MIN_KERNEL or add_new_kernel(run, release)
     write(INSTALLED, Path(__file__).read_text(), 0o755)
     write(MODPROBE_CONF, "# Acer firmware fan modes (nitro_fans.py)\n" + options + "\n")
     write(POLKIT_POLICY, POLICY)
@@ -445,7 +537,11 @@ def install(run=subprocess.run, release: str | None = None) -> int:
         print("Added the fan button to the panel.")
     else:
         print("Add the button yourself: right-click the panel, choose Applets, and add Nitro Fans.")
-    print("Done. Restart the laptop. Then click the fan button in the panel to choose Auto or Max.")
+    if kernel_ready:
+        print("Done. Restart the laptop. Then click the fan button in the panel to choose Auto or Max.")
+    else:
+        print("Done. Max needs a newer kernel: open Update Manager, install the updates, and restart.")
+        print("The fan button will then offer Auto and Max.")
     return 0
 
 

@@ -17,15 +17,23 @@ restart is still needed, or when the laptop's firmware refuses Max:
 
 ## Setup
 
-After installing Linux Mint (and the NVIDIA driver, if Driver Manager offers
-it), open Terminal, paste this line and enter the password:
+Install Linux Mint Cinnamon. The **Linux Mint 22.3 HWE** download (kernel 7.0)
+or Mint 23 is best, because Max fans need kernel 6.19 or later. Install the
+NVIDIA driver if Driver Manager offers it. Then open Terminal, paste this line
+and enter the password:
 
 ```sh
 wget -qO /tmp/nitro_fans.py https://raw.githubusercontent.com/ltmerletti/nitro-an515-54-fan-control/main/nitro_fans.py && sudo python3 /tmp/nitro_fans.py install
 ```
 
-Then restart. On Mint 22.x the command also installs a newer kernel, which
-takes a few minutes.
+Then restart.
+
+On the standard Mint 22.3 download (kernel 6.14), the command also installs
+Ubuntu's 7.0 kernel, which takes a few minutes. It checks that the NVIDIA
+driver is ready for the new kernel and tries to fix it if not. If it still
+isn't ready, it removes the new kernel again and stops, so the laptop starts
+exactly as before. If Mint already follows Ubuntu's newer kernels, the command
+leaves the kernel to Mint: install the updates in Update Manager and restart.
 
 If the menu says "Max isn't supported on this laptop", the firmware refused
 the request. Both fans stay on Auto, and Mint's power modes still work.
