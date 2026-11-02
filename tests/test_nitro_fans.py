@@ -1,4 +1,4 @@
-"""Tests for the Linux Mint Max/Auto fan toggle (mint/nitro_fans.py)."""
+"""Tests for the Linux Mint Max/Auto fan toggle (nitro_fans.py)."""
 
 import importlib.util
 import io
@@ -8,7 +8,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from unittest import mock
 
-SOURCE = Path(__file__).resolve().parent.parent / "mint" / "nitro_fans.py"
+SOURCE = Path(__file__).resolve().parent.parent / "nitro_fans.py"
 spec = importlib.util.spec_from_file_location("nitro_fans", SOURCE)
 nitro_fans = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(nitro_fans)
